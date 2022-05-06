@@ -87,7 +87,17 @@ const Login = ({dispatchLogin}) => {
         navigate("/dogs")
     }
 
-    return <>
+    return <div style={{
+        width:"100%",
+        height:"60vh",
+        display: "flex",
+        flexDirection:"column",
+        justifyContent:"space-evenly",
+        alignItems: "center",
+    }}>
+        <div>
+            <h2>Start training your dog today</h2>
+        </div>
         <GoogleLogin
             isSignedIn={true}
             clientId={clientId}
@@ -96,7 +106,7 @@ const Login = ({dispatchLogin}) => {
             onFailure={console.error}
             cookiePolicy={'single_host_origin'}
         />
-    </>
+    </div>
 }
 
 const mapDispatchToProps = (dispatch) => ({
