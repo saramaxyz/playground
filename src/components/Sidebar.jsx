@@ -13,10 +13,10 @@ const Sidebar = ({auth}) => {
         if (auth === null) {
             navigate("/")
         }
-    })
+    },[])
 
     const {imageUrl, givenName, familyName} = auth
-    return <navbar style={{
+    return <section style={{
         display: 'flex',
         minWidth: "16rem",
         width: "10rem",
@@ -47,7 +47,7 @@ const Sidebar = ({auth}) => {
         </div>
 
 
-    </navbar>
+    </section>
 }
 
 const mapStateToProps = ({auth}) => ({

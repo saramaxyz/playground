@@ -22,6 +22,8 @@ const DogForm = ({auth}) => {
         setAge(value.replace(/\D/g, ''))
     }
 
+
+
     const uploadData = async () => {
 
         setUploading(true)
@@ -33,7 +35,8 @@ const DogForm = ({auth}) => {
             // TODO: Update URL.
             await fetch("http://localhost:8000/api/dogs/insert", {
                 method: 'POST',
-                body: formData
+                body: formData,
+                mode:"cors"
             })
         }
         setUploading(false)

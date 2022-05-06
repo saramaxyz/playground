@@ -5,9 +5,6 @@ import VideoUpload from "../components/VideoUpload";
 
 const TrainingUpload =  () => {
 
-    const {action} = useParams()
-    console.log(action)
-
     return <div style={{
         display: 'flex',
         flexDirection: 'row',

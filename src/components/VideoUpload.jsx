@@ -2,6 +2,9 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
+import {useParams} from "react-router-dom";
+
+const testId = "111224536715192972069"
 
 const baseStyle = {
     flex: 1,
@@ -62,6 +65,8 @@ const thumbInner = {
 function VideoUpload({auth}) {
 
     const [file,setFile] = useState([])
+    const {googleId} = auth
+    const {action} = useParams()
 
     const {
         getRootProps,
@@ -87,10 +92,7 @@ function VideoUpload({auth}) {
         isDragAccept,
         isDragReject
     ]);
-    useEffect(() => {
-        // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-        return () => file.forEach(file => URL.revokeObjectURL(file.preview));
-    }, []);
+
 
     const thumbs = file.map(file => (
         <div style={thumb} key={file.name}>
@@ -99,6 +101,20 @@ function VideoUpload({auth}) {
             </div>
         </div>
     ));
+
+    const uploadVideo = (event) => {
+        event.preventDefault();
+        const formData = new FormData()
+        formData.append("user_id",googleId)
+        formData.append("file",file[0])
+
+        // TODO: Update URL
+        fetch(`http://localhost:8000/api/actions/${action}`,{
+            method:"POST",
+            mode:"cors",
+            body:formData
+        })
+    }
 
     return (
         <div style={{
@@ -117,6 +133,9 @@ function VideoUpload({auth}) {
             <aside style={thumbsContainer}>
                 {thumbs}
             </aside>
+            <Button onClick={uploadVideo} variant="contained" color="success">
+                Upload
+            </Button>
         </div>
     );
 }

@@ -4,6 +4,8 @@ import AddItem from "./AddItem";
 import {useNavigate} from "react-router";
 
 
+
+
 const DogCard = ({name,mediaUrl}) => {
 
 
@@ -11,7 +13,7 @@ const DogCard = ({name,mediaUrl}) => {
         display: 'flex',
         justifyContent:"flex-start",
         flexDirection: 'column',
-
+        alignItems: 'center'
     }}>
         <img style={{
             height:"8rem",
@@ -36,7 +38,8 @@ const DogManagement = ({auth}) => {
         // TODO: Update URL.
         fetch("http://localhost:8000/api/dogs/all",{
             method:"POST",
-            body:formData
+            body:formData,
+            mode:"cors"
         })
             .then(r => r.json())
             .then(obj => {
@@ -57,14 +60,25 @@ const DogManagement = ({auth}) => {
                 })
                 setDogs(queryResult)
             })
-    })
+    },[])
 
-    return <>
+    return <div style={{
+        height:"100%",
+        width:"100%",
+        display:"flex",
+        justifyContent:"start",
+        alignItems:"start",
+        flexWrap:"wrap",
+    }}>
+        <div style={{
+            margin:"2rem"
+        }}>
+            <AddItem onClick={() => navigate("/insertDog")}/>
+        </div>
         {
             dogs.map(({name,mediaUrl}) => <DogCard name={name} mediaUrl={mediaUrl}/>)
         }
-        <AddItem onClick={() => navigate("/insertDog")}/>
-    </>
+    </div>
 }
 
 const mapStateToProps = ({auth}) => ({auth})
