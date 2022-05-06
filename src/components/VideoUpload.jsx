@@ -117,7 +117,6 @@ function VideoUpload({auth}) {
             <aside style={thumbsContainer}>
                 {thumbs}
             </aside>
-            <Button onClick={}></Button>
         </div>
     );
 }
