@@ -3,6 +3,7 @@ import {useDropzone} from 'react-dropzone';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
 import {useParams} from "react-router-dom";
+import getApi from "../repositories/getApi";
 
 const testId = "111224536715192972069"
 
@@ -104,16 +105,9 @@ function VideoUpload({auth}) {
 
     const uploadVideo = (event) => {
         event.preventDefault();
-        const formData = new FormData()
-        formData.append("user_id",googleId)
-        formData.append("file",file[0])
 
-        // TODO: Update URL
-        fetch(`http://54.151.86.65/api/actions/${action}`,{
-            method:"POST",
-            mode:"cors",
-            body:formData
-        })
+        getApi()
+            .inferAction(action,googleId,file[0])
     }
 
     return (

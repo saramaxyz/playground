@@ -4,6 +4,7 @@ import {Button, TextField} from "@mui/material";
 import StyledDropzone from "../components/StyledDropzone";
 import {connect} from "react-redux";
 import {useNavigate} from "react-router";
+import getApi from "../repositories/getApi";
 
 
 
@@ -28,16 +29,9 @@ const DogForm = ({auth}) => {
 
         setUploading(true)
         for (const item of files) {
-            const formData = new FormData();
-            formData.append("name", name)
-            formData.append("file",item)
-            formData.append("user_id",googleId)
-            // TODO: Update URL.
-            await fetch("http://54.151.86.65/api/dogs/insert", {
-                method: 'POST',
-                body: formData,
-                mode:"cors"
-            })
+
+            await getApi()
+                .insertDog(name,item,googleId)
         }
         setUploading(false)
 

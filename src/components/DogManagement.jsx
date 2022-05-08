@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
 import AddItem from "./AddItem";
 import {useNavigate} from "react-router";
+import getApi from "../repositories/getApi";
 
 
 
@@ -33,15 +34,9 @@ const DogManagement = ({auth}) => {
 
     // Call only googleId has changed.
     useEffect(() => {
-        const formData = new FormData()
-        formData.append("user_id",googleId)
-        // TODO: Update URL.
-        fetch("http://54.151.86.65/api/dogs/all",{
-            method:"POST",
-            body:formData,
-            mode:"cors"
-        })
-            .then(r => r.json())
+
+            getApi()
+                .fetchDogs(googleId)
             .then(obj => {
                 const {dogs} = obj
                 const queryResult = Object.entries(dogs).map(([name,images]) => {

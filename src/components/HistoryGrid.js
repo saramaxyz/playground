@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
+import getApi from "../repositories/getApi";
 
 const TouchDetected = ({touchDetected})  => {
     if(touchDetected){
@@ -20,18 +21,8 @@ const HistoryCard = ({dogs,touchDetected,videoId,action}) => {
         alignItems: 'center',
     }}
         onClick={() => {
-            // TODO: Update URL
-            fetch("http://54.151.86.65/api/results/video",{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                mode:"cors",
-                body:JSON.stringify({
-                    video_id:videoId
-                })
-            })
-                .then(resp => resp.json())
+            getApi()
+                .getVideoMetadata(videoId)
                 .then(({video_url}) => {
                     window.open(video_url,"_blank").focus()
                 })
@@ -59,41 +50,30 @@ const HistoryGrid = ({auth}) => {
     const [trainingResults,setTrainingResults] = useState([])
 
     useEffect(() => {
-        // TODO: Update URL
-        fetch("http://54.151.86.65/api/results/fetch",{
-            method: "POST",
-            mode:"cors",
-            body:JSON.stringify({
-                user_id:googleId
-            }),
-            headers:{
-                "Content-Type": "application/json"
-            }
-        })
-            .then(resp => resp.json())
-            .then((resp)=>{
-                const {results} = resp
-                const trainingResultsObj = results.map(({action,dogs,video_id}) => {
-                    let dogNames = []
-                    let touchDetected = false
+            getApi()
+                .fetchResults(googleId)
+                .then((resp)=>{
+                    const {results} = resp
+                    const trainingResultsObj = results.map(({action,dogs,video_id}) => {
+                        let dogNames = []
+                        let touchDetected = false
 
-                    dogs.forEach(dog => {
-                        dogNames.push(dog.dog_name)
-                        if(dog.touch_detected){
-                            touchDetected=true
+                        dogs.forEach(dog => {
+                            dogNames.push(dog.dog_name)
+                            if(dog.touch_detected){
+                                touchDetected=true
+                            }
+                        })
+
+                        return {
+                            action,
+                            dogs:dogNames,
+                            videoId:video_id,
+                            touchDetected
                         }
                     })
-
-                    return {
-                        action,
-                        dogs:dogNames,
-                        videoId:video_id,
-                        touchDetected
-                    }
+                    setTrainingResults(trainingResultsObj)
                 })
-
-                setTrainingResults(trainingResultsObj)
-            })
     },[])
 
     return <div style={{
@@ -107,8 +87,8 @@ const HistoryGrid = ({auth}) => {
                 videoId,
                 touchDetected,
                 action
-            }) => <div style={{margin:"2rem"}}>
-                <HistoryCard key={videoId} action={action} dogs={dogs} videoId={videoId} touchDetected={touchDetected}/>
+            }) => <div key={videoId} style={{margin:"2rem"}}>
+                <HistoryCard  action={action} dogs={dogs} videoId={videoId} touchDetected={touchDetected}/>
                 </div>
             )
         }
