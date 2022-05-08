@@ -21,7 +21,7 @@ const HistoryCard = ({dogs,touchDetected,videoId,action}) => {
     }}
         onClick={() => {
             // TODO: Update URL
-            fetch("http://localhost:8000/api/results/video",{
+            fetch("http://54.151.86.65/api/results/video",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -60,7 +60,7 @@ const HistoryGrid = ({auth}) => {
 
     useEffect(() => {
         // TODO: Update URL
-        fetch("http://localhost:8000/api/results/fetch",{
+        fetch("http://54.151.86.65/api/results/fetch",{
             method: "POST",
             mode:"cors",
             body:JSON.stringify({
@@ -108,7 +108,7 @@ const HistoryGrid = ({auth}) => {
                 touchDetected,
                 action
             }) => <div style={{margin:"2rem"}}>
-                <HistoryCard action={action} dogs={dogs} videoId={videoId} touchDetected={touchDetected}/>
+                <HistoryCard key={videoId} action={action} dogs={dogs} videoId={videoId} touchDetected={touchDetected}/>
                 </div>
             )
         }

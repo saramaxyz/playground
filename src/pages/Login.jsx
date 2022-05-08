@@ -74,7 +74,6 @@ const Login = ({dispatchLogin}) => {
     const navigate = useNavigate()
 
     const updateUser = (authObject) => {
-        console.log(authObject)
         const {googleId = null} = authObject
         const {familyName="",givenName="",email="",imageUrl=null} = authObject.profileObj
         dispatchLogin({

@@ -33,7 +33,7 @@ const DogForm = ({auth}) => {
             formData.append("file",item)
             formData.append("user_id",googleId)
             // TODO: Update URL.
-            await fetch("http://localhost:8000/api/dogs/insert", {
+            await fetch("http://54.151.86.65/api/dogs/insert", {
                 method: 'POST',
                 body: formData,
                 mode:"cors"

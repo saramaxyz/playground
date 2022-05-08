@@ -109,7 +109,7 @@ function VideoUpload({auth}) {
         formData.append("file",file[0])
 
         // TODO: Update URL
-        fetch(`http://localhost:8000/api/actions/${action}`,{
+        fetch(`http://54.151.86.65/api/actions/${action}`,{
             method:"POST",
             mode:"cors",
             body:formData

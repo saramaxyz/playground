@@ -36,7 +36,7 @@ const DogManagement = ({auth}) => {
         const formData = new FormData()
         formData.append("user_id",googleId)
         // TODO: Update URL.
-        fetch("http://localhost:8000/api/dogs/all",{
+        fetch("http://54.151.86.65/api/dogs/all",{
             method:"POST",
             body:formData,
             mode:"cors"
@@ -76,7 +76,7 @@ const DogManagement = ({auth}) => {
             <AddItem onClick={() => navigate("/insertDog")}/>
         </div>
         {
-            dogs.map(({name,mediaUrl}) => <DogCard name={name} mediaUrl={mediaUrl}/>)
+            dogs.map(({name,mediaUrl}) => <DogCard key={name} name={name} mediaUrl={mediaUrl}/>)
         }
     </div>
 }
