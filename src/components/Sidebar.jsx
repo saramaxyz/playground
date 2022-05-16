@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {connect} from "react-redux";
+// Professional Trainer by ProSymbols from NounProject.com
 import image from "../assets/icon.png"
 
 const Sidebar = ({auth}) => {
