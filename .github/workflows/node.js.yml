@@ -33,9 +33,5 @@ jobs:
       with:
         deploy_key: ${{ secrets.DEPLOY_KEY }}
         publish_dir: ./build
-    - uses: actions/checkout@master
-    - name: copy CNAME
-      uses: canastro/copy-file-action@master
-      with:
-        source: "CNAME"
-        target: "CNAME"
+        cname: playground.sarama.xyz
+        enable_jekyll: true
