@@ -28,7 +28,7 @@ const Sidebar = ({auth}) => {
     }}>
         <img style={{
             marginTop:"3rem",
-            borderRadius: "4rem",
+            // borderRadius: "4rem",
         }}
              // src={imageUrl}
              src={image}
