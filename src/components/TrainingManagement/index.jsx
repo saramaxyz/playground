@@ -63,7 +63,7 @@ const TrainingManagement = () => {
 
     return <div className={"training-management"}>
         {
-            trainingCards.map(({name, mediaUrl, owner}) => <TrainingCard className={"training-management__card"}
+            trainingCards.map(({name, mediaUrl, owner}) => <TrainingCard key={name} className={"training-management__card"}
                                                                          owner={owner} name={name}
                                                                          mediaUrl={mediaUrl}/>)
         }

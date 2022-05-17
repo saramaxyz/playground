@@ -1,0 +1,26 @@
+.action-stats{
+    display: flex;
+    flex-direction: column;
+    &__element{
+        display: flex;
+        text-transform: capitalize;
+    }
+}
+.action-dashboard{
+    width:100%;
+
+    &__inner-container{
+        display: flex;
+        flex-direction: row;
+        height:30rem;
+        justify-content:space-around;
+        align-items:center;
+
+    }
+
+}
+
+
+.action-video{
+    width:40rem;
+}

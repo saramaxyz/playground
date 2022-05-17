@@ -1,0 +1,49 @@
+@import "../../variables.scss";
+
+.sidebar{
+  display: flex;
+  min-width: 20rem;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  color:white;
+  background-color: $color-secondary;
+  &__image{
+    margin-top: 3rem;
+    height:12rem;
+    width:12rem;
+    //borderRadius: 4rem;
+  }
+  &__h3{
+    text-align: center;
+    font-size:2rem;
+    word-wrap:break-word;
+
+
+  }
+  &__link-list{
+    width:100%;
+    padding-left:4rem;
+    margin-top:2rem;
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+
+    &__element{
+      text-decoration:none;
+      font-size:1.5rem;
+      color:#000000;
+
+      &:hover{
+        color:#ffffff;
+      }
+      &:visited{
+      }
+      &--selected{
+
+      }
+    }
+
+
+  }
+}

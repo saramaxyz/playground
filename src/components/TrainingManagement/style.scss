@@ -1,0 +1,54 @@
+@import "../../variables.scss";
+.training-card {
+  position: relative;
+
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: column;
+  align-items: center;
+  height:20rem;
+  background-color:$color-secondary-dark;
+  border-radius:1rem;
+  &__image{
+    background-color: white;
+    height: 8rem;
+    width: 8rem;
+  }
+  &__title{
+    margin-top:1rem;
+    color:white;
+    font-size:2rem;
+    text-transform:capitalize;
+  }
+  &__owner{
+    color:white;
+    font-size:1rem;
+    position:absolute;
+    bottom:.5rem;
+    right:1rem;
+    text-align:right;
+  }
+}
+
+.training-management{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  &__card {
+    margin:2rem;
+    height: 24rem;
+    width: 16rem;
+    & img{
+      margin-top:2rem;
+      height: 12rem;
+      width: 12rem;
+      object-fit: contain;
+    }
+
+
+  }
+}
