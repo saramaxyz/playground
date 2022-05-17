@@ -7,24 +7,23 @@
   flex-direction: column;
   align-items: center;
   height:20rem;
-  background-color:$color-secondary-dark;
-  border-radius:1rem;
+  background-color:white;
+  border-radius:3px;
+  box-shadow:5px 10px #888888;
+  border:5px solid $color-secondary-dark;
   &__image{
-    background-color: white;
-    height: 8rem;
-    width: 8rem;
+    margin-top:2rem;
   }
   &__title{
-    margin-top:1rem;
-    color:white;
-    font-size:2rem;
-    text-transform:capitalize;
+    color:black;
+    font-weight:600;
+    font-size:1.5rem;
   }
   &__owner{
-    color:white;
+    color:black;
     font-size:1rem;
     position:absolute;
-    bottom:.5rem;
+    bottom:-.5rem;
     right:1rem;
     text-align:right;
   }

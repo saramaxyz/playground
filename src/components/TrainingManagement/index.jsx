@@ -8,6 +8,7 @@ import touch from "../../assets/touch.png"
 import wait from "../../assets/wait.svg"
 import stand from "../../assets/stand.svg"
 import "./style.scss"
+import {Button} from "@mui/material";
 
 const TrainingCard = ({className = "", name, mediaUrl, owner}) => {
 
@@ -15,11 +16,14 @@ const TrainingCard = ({className = "", name, mediaUrl, owner}) => {
 
     return <div
         className={"training-card " + className}
-        onClick={() => navigate(`/training/${name}`)}
+
     >
         <img className={"training-card__image"} src={mediaUrl}/>
         <p className={"training-card__title"}>{name}</p>
-        <p className={"training-card__owner"}>{owner}</p>
+        {/*<p className={"training-card__owner"}>by {owner}</p>*/}
+        <Button onClick={() => navigate(`/training/${name}`)} variant="contained" color="success">
+            Start
+        </Button>
     </div>
 
 }

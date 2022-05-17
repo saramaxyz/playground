@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useParams} from "react-router-dom";
 import getApi from "../../repositories/getApi";
 import "./style.scss"
+import Card from "../Card";
 /*
 
 {
@@ -39,17 +40,16 @@ const ActionStats = ({
     dogs,
     action,
  }) => {
-    return <div className="action-stats">
-        <div className="action-stats__element">
-            Date: {date}
-        </div>
-        <div>
-            Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}
-        </div>
-        <div className="action-stats__element">Action: {action}</div>
-        <div className="action-stats__element">Status: {status ? "Successful" : "Failed"}</div>
-
-    </div>
+    return <Card className="action-stats">
+            <p className="action-stats__element">
+                Date: {date}
+            </p>
+            <p>
+                Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}
+            </p>
+            <p className="action-stats__element">Action: {action}</p>
+            <p className="action-stats__element">Status: {status ? "Successful" : "Failed"}</p>
+    </Card>
 }
 
 const ActionDashboard = () => {

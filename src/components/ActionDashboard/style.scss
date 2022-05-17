@@ -1,7 +1,11 @@
 .action-stats{
     display: flex;
     flex-direction: column;
+
+    height:16rem !important;
+    width:16rem !important;
     &__element{
+
         display: flex;
         text-transform: capitalize;
     }
@@ -15,7 +19,12 @@
         height:30rem;
         justify-content:space-around;
         align-items:center;
-
+        & p{
+            margin-top:1rem;
+            margin-left:.25rem;
+            font-weight:600;
+            font-size:1rem;
+        }
     }
 
 }

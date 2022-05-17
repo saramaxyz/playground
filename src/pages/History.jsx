@@ -1,6 +1,6 @@
 import React from "react"
 import Sidebar from "../components/Sidebar";
-import HistoryGrid from "../components/HistoryGrid";
+import HistoryGrid from "../components/HistoryManagement";
 
 export default () => {
 
