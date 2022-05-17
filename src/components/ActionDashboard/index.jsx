@@ -44,9 +44,9 @@ const ActionStats = ({
             <p className="action-stats__element">
                 Date: {date}
             </p>
-            <p>
-                Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}
-            </p>
+            {/*<p>*/}
+            {/*    Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}*/}
+            {/*</p>*/}
             <p className="action-stats__element">Action: {action}</p>
             <p className="action-stats__element">Status: {status ? "Successful" : "Failed"}</p>
     </Card>

@@ -22,7 +22,7 @@ const HistoryCard = ({className="",dogs,actionDetected,videoId,action}) => {
         <div  className="history-card__thumbnail" />
         <h4>{action.toUpperCase()}</h4>
         <ActionDetected className={""} actionDetected={actionDetected}/>
-        <p>Dogs: {dogs.join(", ")}</p>
+        {/*<p>Dogs: {dogs.join(", ")}</p>*/}
         <Button onClick={() => navigate(`../history/${videoId}`)} variant="contained" color="success">
             View
         </Button>
@@ -46,7 +46,6 @@ const HistoryManagement = ({auth}) => {
                     const trainingResultsObj = results.map(({action,dogs,video_id}) => {
                         let dogNames = []
                         let action_detected = false
-
                         dogs.forEach(dog => {
                             dogNames.push(dog.dog_name)
                             if(dog.action_detected){
