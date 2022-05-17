@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
 import getApi from "../repositories/getApi";
+import {useNavigate} from "react-router";
 
 const TouchDetected = ({touchDetected})  => {
     if(touchDetected){
@@ -13,20 +14,14 @@ const TouchDetected = ({touchDetected})  => {
 
 const HistoryCard = ({dogs,touchDetected,videoId,action}) => {
 
-
+    const navigate = useNavigate()
     return <div style={{
         display: 'flex',
         justifyContent:"flex-start",
         flexDirection: 'column',
         alignItems: 'center',
     }}
-        onClick={() => {
-            getApi()
-                .getVideoMetadata(videoId)
-                .then(({video_url}) => {
-                    window.open(video_url,"_blank").focus()
-                })
-        }}
+        onClick={() => navigate(`../history/${videoId}`)}
     >
         <div style={{
             height:"8rem",

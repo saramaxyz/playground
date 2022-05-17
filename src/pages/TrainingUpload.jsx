@@ -1,6 +1,5 @@
 import React from "react"
 import Sidebar from "../components/Sidebar";
-import { useParams } from "react-router-dom";
 import VideoUpload from "../components/VideoUpload";
 
 const TrainingUpload =  () => {

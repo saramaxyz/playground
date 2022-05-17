@@ -1,26 +1,18 @@
 import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
-import AddItem from "./AddItem";
+import AddItem from "../AddItem";
 import {useNavigate} from "react-router";
-import getApi from "../repositories/getApi";
+import getApi from "../../repositories/getApi";
+import "./style.scss"
 
 
 
+const DogCard = ({className="",name,mediaUrl}) => {
 
-const DogCard = ({name,mediaUrl}) => {
 
-
-    return <div style={{
-        display: 'flex',
-        justifyContent:"flex-start",
-        flexDirection: 'column',
-        alignItems: 'center'
-    }}>
-        <img style={{
-            height:"8rem",
-            width:"8rem"
-        }} src={mediaUrl} />
-        <p style={{padding:"0",marginTop:"1rem"}}>{name}</p>
+    return <div className={"dog-card " + className} >
+        <img className={"dog-card__image"}  src={mediaUrl} />
+        <p className={"dog-card__title"}>{name}</p>
     </div>
 
 }
@@ -57,21 +49,10 @@ const DogManagement = ({auth}) => {
             })
     },[])
 
-    return <div style={{
-        height:"100%",
-        width:"100%",
-        display:"flex",
-        justifyContent:"start",
-        alignItems:"start",
-        flexWrap:"wrap",
-    }}>
-        <div style={{
-            margin:"2rem"
-        }}>
-            <AddItem onClick={() => navigate("/insertDog")}/>
-        </div>
+    return <div className={"dog-management"}>
+        <AddItem className={"dog-management__card"} onClick={() => navigate("/insertDog")}/>
         {
-            dogs.map(({name,mediaUrl}) => <DogCard key={name} name={name} mediaUrl={mediaUrl}/>)
+            dogs.map(({name,mediaUrl}) => <DogCard className={"dog-management__card"} key={name} name={name} mediaUrl={mediaUrl}/>)
         }
     </div>
 }
