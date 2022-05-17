@@ -6,6 +6,7 @@ import recall from "../assets/recall.svg"
 import fetch from "../assets/fetch.png"
 import touch from "../assets/touch.png"
 import wait from "../assets/wait.svg"
+import stand from "../assets/stand.svg"
 
 const TrainingCard = ({name, mediaUrl}) => {
 
@@ -52,10 +53,14 @@ const trainingCards = [
         name: "touch",
         mediaUrl: touch
     },
-    // {
-    //     name:"wait",
-    //     mediaUrl:wait
-    // }
+    {
+        name:"stand",
+        mediaUrl:stand
+    },
+    {
+        name:"stay",
+        mediaUrl:wait
+    }
 ]
 
 
