@@ -6,11 +6,16 @@ export default () => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
-        width:"100vw",
-        height:"100vh",
+        minWidth:"100vw",
+        minHeight:"100vh",
     }}>
         <Sidebar/>
-        <DogManagement/>
+        <div style={{
+            overflowY: "scroll",
+            width:"100%"
+        }}>
+            <DogManagement/>
+        </div>
     </div>
 }
 

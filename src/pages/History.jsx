@@ -7,12 +7,17 @@ export default () => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
-        width:"100vw",
-        height:"100vh"
+        width: "100vw",
+        height: "100vh"
 
     }}>
         <Sidebar/>
-        <HistoryGrid/>
+        <div style={{
+            overflowY: "scroll",
+            width:"100%"
+        }}>
+            <HistoryGrid/>
+        </div>
     </div>
 }
 

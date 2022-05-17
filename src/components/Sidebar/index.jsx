@@ -14,18 +14,17 @@ const Sidebar = ({auth}) => {
         if (auth === null) {
             navigate("/")
         }
-    },[])
+    }, [])
 
     const {imageUrl, givenName, familyName} = auth
     return <section className={"sidebar"}>
-        <img className={"sidebar__image"} src={image} />
+        <img className={"sidebar__image"} src={image}/>
         <h3 className={"sidebar__h3"}>{givenName} {familyName}</h3>
-        <div className={"sidebar__link-list"} >
+        <div className={"sidebar__link-list"}>
             <Link className={"sidebar__link-list__element"} to={"/dogs"}>Dogs</Link>
             <Link className={"sidebar__link-list__element"} to={"/training"}>Training</Link>
             <Link className={"sidebar__link-list__element"} to={"/history"}>History</Link>
         </div>
-
 
     </section>
 }

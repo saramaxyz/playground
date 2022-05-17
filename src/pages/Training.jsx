@@ -13,7 +13,13 @@ export default () => {
 
     }}>
         <Sidebar/>
-        <TrainingManagement/>
+        <div style={{
+            overflowY:"scroll",
+            width:"100%"
+        }}>
+            <TrainingManagement/>
+
+        </div>
     </div>
 }
 
