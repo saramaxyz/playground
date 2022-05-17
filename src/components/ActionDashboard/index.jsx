@@ -44,9 +44,9 @@ const ActionStats = ({
             <p className="action-stats__element">
                 Date: {date}
             </p>
-            <p>
-                Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}
-            </p>
+            {/*<p>*/}
+            {/*    Dogs: {dogs.map(({dog_name}) => dog_name).join(", ")}*/}
+            {/*</p>*/}
             <p className="action-stats__element">Action: {action}</p>
             <p className="action-stats__element">Status: {status ? "Successful" : "Failed"}</p>
     </Card>
@@ -61,9 +61,26 @@ const ActionDashboard = () => {
     useEffect(() => {
         getApi()
             .getVideoMetadata(videoId)
-            .then(({video_url,results}) => {
+            .then((videoMetadata) => {
+                const {video_url,results} = videoMetadata
+                const {date,action,dogs,video_id} = results[0]
+                let dogNames = []
+                let action_detected = false
+                dogs.forEach(dog => {
+                    dogNames.push(dog.dog_name)
+                    if(dog.action_detected){
+                        action_detected=true
+                    }
+                })
+                const videoData = {
+                    action,
+                    date,
+                    dogs:dogNames,
+                    videoId:video_id,
+                    actionDetected:action_detected
+                }
                 setVideoUrl(video_url)
-                setVideoData(results[0])
+                setVideoData(videoData)
             })
 
     },[])
@@ -74,7 +91,7 @@ const ActionDashboard = () => {
                 action={videoData.action || null}
                 date={videoData.date || null}
                 dogs={videoData.dogs || []}
-                public={videoData.public || false}
+                status={videoData.actionDetected}
             />
             {
                 (videoUrl === null) ? null :
