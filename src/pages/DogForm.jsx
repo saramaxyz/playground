@@ -34,7 +34,6 @@ const DogForm = ({auth}) => {
                 .insertDog(name,item,googleId)
         }
         setUploading(false)
-
         navigate("/dogs")
 
     }

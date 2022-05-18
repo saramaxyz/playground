@@ -1,9 +1,10 @@
 import React from "react"
-import Sidebar from "../components/Sidebar";
-import DogManagement from "../components/DogManagement";
-import GridContainer from "../components/GridContainer";
+import Sidebar from "../../components/Sidebar";
+import GridContainer from "../../components/GridContainer";
+import DogCrud from "../../components/DogCrud";
 
 export default () => {
+
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
@@ -12,8 +13,7 @@ export default () => {
     }}>
         <Sidebar/>
         <GridContainer>
-
-            <DogManagement/>
+            <DogCrud/>
         </GridContainer>
     </div>
 }

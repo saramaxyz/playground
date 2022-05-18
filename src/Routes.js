@@ -7,13 +7,14 @@ import History from "./pages/History";
 import DogForm from "./pages/DogForm";
 import TrainingUpload from "./pages/TrainingUpload";
 import Action from "./pages/Action";
-
+import DogImages from "./pages/DogImages"
 
 
 
 export default () => (<Routes>
     <Route exact path={"/"} element={<Login/>}/>
     <Route exact path={"/dogs"} element={<Dogs/>}/>
+    <Route exact path={"/dogs/:dogName"} element={<DogImages/>}/>
     <Route exact path={"/training"} element={<Training/>}/>
     <Route exact path={"/history"} element={<History/>}/>
     <Route exact path={"/insertDog"} element={<DogForm/>}/>

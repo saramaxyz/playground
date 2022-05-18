@@ -1,6 +1,7 @@
 import React from "react"
 import Sidebar from "../components/Sidebar";
 import TrainingManagement from "../components/TrainingManagement";
+import GridContainer from "../components/GridContainer";
 
 
 
@@ -13,13 +14,10 @@ export default () => {
 
     }}>
         <Sidebar/>
-        <div style={{
-            overflowY:"scroll",
-            width:"100%"
-        }}>
+        <GridContainer>
             <TrainingManagement/>
 
-        </div>
+        </GridContainer>
     </div>
 }
 
