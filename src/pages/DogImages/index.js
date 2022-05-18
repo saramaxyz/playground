@@ -1,11 +1,9 @@
 import React from "react"
 import Sidebar from "../../components/Sidebar";
 import GridContainer from "../../components/GridContainer";
-import {useParams} from "react-router-dom";
+import DogCrud from "../../components/DogCrud";
 
 export default () => {
-
-
 
     return <div style={{
         display: 'flex',
@@ -15,7 +13,7 @@ export default () => {
     }}>
         <Sidebar/>
         <GridContainer>
-
+            <DogCrud/>
         </GridContainer>
     </div>
 }

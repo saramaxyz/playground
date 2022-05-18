@@ -49,16 +49,16 @@ class APIService {
 
     }
 
-    deleteDog(userId,dogId) {
+    deleteImage(userId, imageId) {
         const formData = new FormData()
         formData.append("user_id", userId)
-        formData.append("dog_id", dogId)
+        formData.append("dog_id", imageId)
         return fetch(`${url}/api/dogs/delete`, {
             method: "POST",
             body: formData,
             mode: "no-cors"
         })
-            
+
     }
 
     fetchResults(userId) {

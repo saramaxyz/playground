@@ -12,12 +12,13 @@ import DogManagementRepository from "./repository";
 const DogCard = ({className="",name,mediaUrl,googleId}) => {
 
     const repo = new DogManagementRepository()
+    const navigate = useNavigate()
 
     return <div className={"dog-card " + className} >
         <img className={"dog-card__image"}  src={mediaUrl} />
         <p className={"dog-card__title"}>{name}</p>
         <div className={"dog-card__buttons"}>
-            <Fab color="primary" aria-label="view">
+            <Fab onClick={() => {navigate(encodeURIComponent(name),{state:{googleId}})}} color="primary" aria-label="view">
                 <PageviewIcon />
             </Fab>
             <Fab onClick={() => repo.purgeDog(googleId,name)} color="secondary" aria-label="delete">
@@ -42,7 +43,6 @@ const DogManagement = ({auth}) => {
         repo.getQueryResult(googleId).then(result => setDogs(result))
     },[])
 
-    console.log(dogs)
 
     return <div className={"dog-management"}>
         <AddItem className={"dog-management__card"} onClick={() => navigate("/insertDog")}/>
