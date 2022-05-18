@@ -32,13 +32,11 @@ const DogCrud = ({googleId}) => {
         }
     }
 
-    console.log(dogImages)
-
     return <div className="dog-crud">
 
         {
             dogImages.map(({media_url, id}) => {
-                return <Card className="dog-crud-card" key={id}>
+                return <Card className="dog-crud__card" key={id}>
                     <img className="" src={media_url}/>
                     <Fab variant="extended" onClick={() => deleteImage(id)} color="secondary"
                          aria-label="delete">
