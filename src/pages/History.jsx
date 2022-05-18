@@ -1,6 +1,7 @@
 import React from "react"
 import Sidebar from "../components/Sidebar";
 import HistoryGrid from "../components/HistoryManagement";
+import GridContainer from "../components/GridContainer";
 
 export default () => {
 
@@ -12,12 +13,10 @@ export default () => {
 
     }}>
         <Sidebar/>
-        <div style={{
-            overflowY: "scroll",
-            width:"100%"
-        }}>
+        <GridContainer>
+
             <HistoryGrid/>
-        </div>
+        </GridContainer>
     </div>
 }
 

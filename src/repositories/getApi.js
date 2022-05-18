@@ -37,6 +37,30 @@ class APIService {
             .then(r => r.json())
     }
 
+    purgeDog(userId,dogName) {
+        const formData = new FormData()
+        formData.append("user_id", userId)
+        formData.append("dog_name", dogName)
+        return fetch(`${url}/api/dogs/purge`, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+        })
+
+    }
+
+    deleteDog(userId,dogId) {
+        const formData = new FormData()
+        formData.append("user_id", userId)
+        formData.append("dog_id", dogId)
+        return fetch(`${url}/api/dogs/delete`, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+        })
+            
+    }
+
     fetchResults(userId) {
 
         const formData = new FormData()
@@ -52,6 +76,8 @@ class APIService {
             .catch(() => ({results:[]}))
             // .then(resp => resp.json())
     }
+
+
 
     getVideoMetadata(videoId) {
         const formData = new FormData()
