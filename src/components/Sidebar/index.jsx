@@ -4,8 +4,9 @@ import {connect} from "react-redux";
 // Professional Trainer by ProSymbols from NounProject.com
 import image from "../../assets/icon.png"
 import "./style.scss"
+import {logout} from "../../actions";
 
-const Sidebar = ({auth}) => {
+const Sidebar = ({auth,dispatchLogout}) => {
 
     const navigate = useNavigate()
 
@@ -24,6 +25,7 @@ const Sidebar = ({auth}) => {
             <Link className={"sidebar__link-list__element"} to={"/dogs"}>Dogs</Link>
             <Link className={"sidebar__link-list__element"} to={"/training"}>Training</Link>
             <Link className={"sidebar__link-list__element"} to={"/history"}>History</Link>
+            <Link onClick={dispatchLogout} className={"sidebar__link-list__element"} to={"/"}>Sign Out</Link>
         </div>
 
     </section>
@@ -33,5 +35,9 @@ const mapStateToProps = ({auth}) => ({
     auth
 })
 
-export default connect(mapStateToProps)(Sidebar)
+const mapDispatchToProps = (dispatch) => ({
+    dispatchLogout: () =>  dispatch(logout())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)
 
