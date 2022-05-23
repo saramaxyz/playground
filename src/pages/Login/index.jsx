@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import GoogleLogin from 'react-google-login';
 import {connect} from "react-redux";
 import {login} from "../../actions";
@@ -9,9 +9,16 @@ import "./style.scss"
 const clientId = "640889680577-fiuhpeigen4fd5h4n5at9ht2v78lmmcr.apps.googleusercontent.com"
 const clientSecret = "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"
 
-const Index = ({dispatchLogin}) => {
+const Index = ({dispatchLogin,auth}) => {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+       if(auth !== undefined && auth !== null){
+           console.log(auth)
+           navigate("/dogs")
+       }
+    },[])
 
     const updateUser = (authObject) => {
         const {googleId = null} = authObject
@@ -32,7 +39,6 @@ const Index = ({dispatchLogin}) => {
         </h1>
         <h2 className="login-container__header2">Start training your dog today</h2>
         <GoogleLogin
-            isSignedIn={true}
             clientId={clientId}
             buttonText="Login with Google"
             onSuccess={updateUser}
@@ -46,6 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatchLogin: (authObj) => dispatch(login(authObj))
 })
 
+const mapStateToProps = ({auth}) => ({auth})
 
 
-export default connect(null,mapDispatchToProps)(Index)
+export default connect(mapStateToProps,mapDispatchToProps)(Index)

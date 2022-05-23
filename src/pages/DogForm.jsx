@@ -5,6 +5,7 @@ import StyledDropzone from "../components/StyledDropzone";
 import {connect} from "react-redux";
 import {useNavigate} from "react-router";
 import getApi from "../repositories/getApi";
+import {CircularProgress} from "@material-ui/core";
 
 
 
@@ -47,33 +48,36 @@ const DogForm = ({auth}) => {
         <Sidebar/>
 
         <form style={{
+            width:"100%",
             display: 'flex',
             flexDirection: 'column',
             alignItems: "center",
-            width: "inherit",
             justifyContent: "space-evenly"
         }}>
             <div>
                 <StyledDropzone onDrop={setFiles}>
                     <p>Upload images</p>
                 </StyledDropzone>
+                <p style={{textAlign: 'center'}}>{(files.length === 0) ? "No file is attached." : `${files.length} file will be uploaded.`}</p>
             </div>
             <div>
-                <TextField value={name} onChange={({target: {value}}) => setName(value)} id="standard-basic"
+                <TextField style={{width:"100%"}} value={name}  onChange={({target: {value}}) => setName(value)} id="standard-basic"
                            label="Name" variant="standard"/>
-                <TextField value={age} onChange={updateAge} id="standard-basic" label="Age" variant="standard"/>
             </div>
-            <div>
-                <TextField value={breed} onChange={({target: {value}}) => setBreed(value)} id="standard-basic"
-                           label="Breed" variant="standard"/>
-            </div>
+
             <div style={{
                 display: "flex",
                 justifyContent: "center"
             }}>
-                <Button onClick={uploadData} variant="contained" color="success">
+                {
+                    (uploading) ?
+                    <CircularProgress/>
+                    :
+                    <Button onClick={uploadData} variant="contained" color="success">
                     Add
-                </Button>
+                    </Button>
+                }
+
             </div>
         </form>
     </div>
