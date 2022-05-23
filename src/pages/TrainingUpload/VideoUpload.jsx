@@ -3,9 +3,11 @@ import {useDropzone} from 'react-dropzone';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
 import {useParams} from "react-router-dom";
-import getApi from "../repositories/getApi";
-
-const testId = "111224536715192972069"
+import getApi from "../../repositories/getApi";
+import descriptions from "./descriptions"
+import "./style.scss"
+import Card from "../../components/Card";
+import {CardContent, Typography} from "@material-ui/core";
 
 const baseStyle = {
     flex: 1,
@@ -42,7 +44,8 @@ const thumbsContainer = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 16
+    marginTop: 16,
+    height:80
 };
 
 const thumb = {
@@ -63,11 +66,13 @@ const thumbInner = {
     overflow: 'hidden'
 };
 
-function VideoUpload({auth}) {
+function VideoUpload({auth,description}) {
 
     const [file,setFile] = useState([])
     const {googleId} = auth
     const {action} = useParams()
+
+    const actionText = descriptions[action] || {}
 
     const {
         getRootProps,
@@ -109,6 +114,7 @@ function VideoUpload({auth}) {
         getApi()
             .inferAction(action,googleId,file[0])
     }
+    console.log(actionText)
 
     return (
         <div style={{
@@ -116,20 +122,40 @@ function VideoUpload({auth}) {
             flexDirection:"column",
             height:"100%",
             flexGrow:"1",
-            justifyContent:"center",
+            justifyContent:"space-evenly",
             alignItems:"center"
         }}
-             className="container">
-            <div {...getRootProps({style})}>
-                <input {...getInputProps()} />
-                Upload video
-            </div>
-            <aside style={thumbsContainer}>
-                {thumbs}
-            </aside>
-            <Button onClick={uploadVideo} variant="contained" color="success">
-                Upload
-            </Button>
+             >
+            <Card className={"action-description"}>
+                <CardContent className="action-description__content">
+                    <Typography className={"action-description__content__header"} gutterBottom variant="h2" component="div">
+                        {action}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                        {actionText.description || ""}
+                    </Typography>
+                    <br/>
+
+                        {(actionText.steps || []).map((text,index) => {
+                            return <Typography variant="body2" color="text.secondary">
+                                {(index+1).toString() + ". " + text}
+                            </Typography>
+                        })}
+                    <br/>
+
+                </CardContent>
+                <div {...getRootProps({style})}>
+                    <input {...getInputProps()} />
+                    Upload video
+                </div>
+                <aside style={thumbsContainer}>
+                    {thumbs}
+                </aside>
+                <Button onClick={uploadVideo} variant="contained" color="success">
+                    Upload
+                </Button>
+            </Card>
+
         </div>
     );
 }

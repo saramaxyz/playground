@@ -1,6 +1,6 @@
 import React from "react"
-import Sidebar from "../components/Sidebar";
-import VideoUpload from "../components/VideoUpload";
+import Sidebar from "../../components/Sidebar";
+import VideoUpload from "./VideoUpload";
 
 const TrainingUpload =  () => {
 
