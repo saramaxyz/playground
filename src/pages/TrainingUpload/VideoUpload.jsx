@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import getApi from "../../repositories/getApi";
 import descriptions from "./descriptions"
 import "./style.scss"
@@ -71,7 +71,8 @@ function VideoUpload({auth,description}) {
     const [file,setFile] = useState([])
     const {googleId} = auth
     const {action} = useParams()
-
+    let { state  } = useLocation();
+    state = state || {}
     const actionText = descriptions[action] || {}
 
     const {
@@ -114,7 +115,6 @@ function VideoUpload({auth,description}) {
         getApi()
             .inferAction(action,googleId,file[0])
     }
-    console.log(actionText)
 
     return (
         <div style={{
@@ -129,15 +129,15 @@ function VideoUpload({auth,description}) {
             <Card className={"action-description"}>
                 <CardContent className="action-description__content">
                     <Typography className={"action-description__content__header"} gutterBottom variant="h2" component="div">
-                        {action}
+                        { state.name || action}
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        {actionText.description || ""}
+                        { state.description || actionText.description || ""}
                     </Typography>
                     <br/>
 
                         {(actionText.steps || []).map((text,index) => {
-                            return <Typography variant="body2" color="text.secondary">
+                            return <Typography variant="body2" color="textSecondary">
                                 {(index+1).toString() + ". " + text}
                             </Typography>
                         })}

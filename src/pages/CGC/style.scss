@@ -1,0 +1,78 @@
+@import "../../variables.scss";
+
+
+.cgc-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  &__tests {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: flex;
+  }
+}
+
+.test-container {
+  height: 24rem;
+  width: 16rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img{
+    margin:2rem;
+    height: 12rem;
+    width: 12rem;
+    object-fit: cover;
+  }
+  & h3 {
+    margin: 0 1rem;
+    font-size:1rem;
+  }
+  & button {
+
+    margin-top:1rem;
+    width:50%;
+  }
+}
+
+.description-container {
+  width:100%;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  &__left{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-between;
+    width:25%;
+    height:100%;
+
+
+    &__image{
+      background-image: url("../../assets/cgc_image.png");
+      background-size:cover;
+      width:12rem;
+      height:12rem;
+    }
+  }
+  &__right{
+    width:100%;
+    margin:2rem;
+    height:100%;
+    &__header{
+      text-align: center;
+      font-size:3rem;
+      color:$color-secondary-dark;
+    }
+    &__text {
+      font-size:1.25rem;
+    }
+  }
+
+}
