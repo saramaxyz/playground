@@ -30,6 +30,12 @@ const TrainingCard = ({className = "", name, mediaUrl, owner,route}) => {
 
 const trainingCards = [
     {
+        name:"Canine Good Citizen",
+        mediaUrl:cgcImage,
+        owner:"Sarama",
+        route:"cgc"
+    },
+    {
         name: "down",
         mediaUrl: down,
         owner: "Sarama"
@@ -60,12 +66,7 @@ const trainingCards = [
         mediaUrl: wait,
         owner: "Sarama"
     },
-    {
-        name:"Canine Good Citizen",
-        mediaUrl:cgcImage,
-        owner:"Sarama",
-        route:"cgc"
-    }
+
 ]
 
 

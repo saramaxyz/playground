@@ -1,4 +1,6 @@
-export const url = "https://d3v8ap4u5cf7by.cloudfront.net"
+// export const url = "https://dcppo21tv092m.cloudfront.net"
+export const url = "https://d3mifhy8ied3p3.cloudfront.net"
+
 // export const url = "http://ec2-54-151-86-65.us-west-1.compute.amazonaws.com"
 class APIService {
 
