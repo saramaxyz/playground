@@ -10,6 +10,7 @@ import Action from "./pages/Action";
 import DogImages from "./pages/DogImages"
 import CreateAction from "./pages/CreateAction";
 import Barrier from "./components/Barrier";
+import CgcPage from "./pages/CGC";
 
 
 
@@ -22,6 +23,7 @@ export default () => (<Routes>
     <Route exact path={"/history"} element={<Barrier><History/></Barrier>}/>
     <Route exact path={"/insertDog"} element={<Barrier><DogForm/></Barrier>}/>
     <Route exact path={"/createAction"} element={<Barrier><CreateAction/></Barrier>}/>
+    <Route exact path={"/training/cgc"} element={<Barrier><CgcPage/></Barrier>}/>
     <Route exact path={"/training/:action"} element={<Barrier><TrainingUpload/></Barrier>}/>
     <Route exact path={"/history/:videoId"} element={<Barrier><Action/></Barrier>}/>
 </Routes>)

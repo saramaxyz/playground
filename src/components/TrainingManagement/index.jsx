@@ -9,6 +9,7 @@ import wait from "../../assets/wait.svg"
 import stand from "../../assets/stand.svg"
 import "./style.scss"
 import {Button} from "@mui/material";
+import CgcPage from "../../pages/CGC";
 
 const TrainingCard = ({className = "", name, mediaUrl, owner}) => {
 
@@ -59,6 +60,11 @@ const trainingCards = [
         name: "stay",
         mediaUrl: wait,
         owner: "Sarama"
+    },
+    {
+        name:"cgc",
+        mediaUrl:fetch,
+        owner:"Sarama",
     }
 ]
 
@@ -71,6 +77,7 @@ const TrainingManagement = () => {
                                                                          owner={owner} name={name}
                                                                          mediaUrl={mediaUrl}/>)
         }
+
     </div>
 }
 
