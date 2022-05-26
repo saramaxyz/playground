@@ -3,15 +3,14 @@ import {useNavigate} from "react-router";
 import down from "../../assets/down.png"
 import sit from "../../assets/sit.png"
 import recall from "../../assets/recall.svg"
-import fetch from "../../assets/fetch.png"
+import cgcImage from "../../assets/cgc_image.jpg"
 import touch from "../../assets/touch.png"
 import wait from "../../assets/wait.svg"
 import stand from "../../assets/stand.svg"
 import "./style.scss"
 import {Button} from "@mui/material";
-import CgcPage from "../../pages/CGC";
 
-const TrainingCard = ({className = "", name, mediaUrl, owner}) => {
+const TrainingCard = ({className = "", name, mediaUrl, owner,route}) => {
 
     const navigate = useNavigate()
 
@@ -22,7 +21,7 @@ const TrainingCard = ({className = "", name, mediaUrl, owner}) => {
         <img className={"training-card__image"} src={mediaUrl}/>
         <p className={"training-card__title"}>{name}</p>
         {/*<p className={"training-card__owner"}>by {owner}</p>*/}
-        <Button onClick={() => navigate(`/training/${name}`)} variant="contained" color="success">
+        <Button onClick={() => navigate(`/training/${route}`)} variant="contained" color="success">
             Start
         </Button>
     </div>
@@ -62,9 +61,10 @@ const trainingCards = [
         owner: "Sarama"
     },
     {
-        name:"cgc",
-        mediaUrl:fetch,
+        name:"Canine Good Citizen",
+        mediaUrl:cgcImage,
         owner:"Sarama",
+        route:"cgc"
     }
 ]
 
@@ -73,8 +73,8 @@ const TrainingManagement = () => {
 
     return <div className={"training-management"}>
         {
-            trainingCards.map(({name, mediaUrl, owner}) => <TrainingCard key={name} className={"training-management__card"}
-                                                                         owner={owner} name={name}
+            trainingCards.map(({name, mediaUrl, owner,route}) => <TrainingCard key={name} className={"training-management__card"}
+                                                                         owner={owner} name={name} route={route || name}
                                                                          mediaUrl={mediaUrl}/>)
         }
 
