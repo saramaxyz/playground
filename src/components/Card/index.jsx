@@ -3,9 +3,9 @@ import "./style.scss";
 
 
 
-const Card = ({className = "",children}) => {
+const Card = ({onClick,className = "",children}) => {
 
-    return <div className={"card " + className}>
+    return <div onClick={onClick} className={"card " + className}>
         {children}
     </div>
 

@@ -15,8 +15,7 @@ const Index = ({dispatchLogin,auth}) => {
 
     useEffect(() => {
        if(auth !== undefined && auth !== null){
-           console.log(auth)
-           navigate("/dogs")
+           navigate("/courses")
        }
     },[])
 
