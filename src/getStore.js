@@ -4,7 +4,9 @@ import reducer from "./reducers"
 import {configureStore} from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage'
 import {persistReducer, persistStore} from "redux-persist";
+import createSagaMiddleware from 'redux-saga'
 
+import sagas from "./sagas"
 
 const IGNORED_ACTIONS = [
 ]
@@ -31,10 +33,13 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 
 export default () => {
+    const sagaMiddleware = createSagaMiddleware()
+
     const store = configureStore({
         reducer:persistedReducer,
-        middleware: [reduxThunk, logger]
+        middleware: [sagaMiddleware,reduxThunk, logger]
     })
+    sagaMiddleware.run(sagas)
 
     const persistor = persistStore(store)
     return { store, persistor }

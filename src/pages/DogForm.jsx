@@ -10,8 +10,6 @@ import {CircularProgress} from "@material-ui/core";
 
 
 const DogForm = ({auth}) => {
-
-
     const navigate = useNavigate()
     const {googleId} = auth
     const [age, setAge] = useState(null);

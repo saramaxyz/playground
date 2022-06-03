@@ -32,8 +32,9 @@ const ActionDashboard = () => {
         getApi()
             .getVideoMetadata(videoId)
             .then((videoMetadata) => {
-                const {video_url, results} = videoMetadata
-                const {date, action, dogs, video_id} = results[0]
+                let {video_url, results} = videoMetadata
+                if(results.length >= 1) results = results[0]
+                const {date, action, dogs, video_id} = results
                 let dogNames = []
                 let action_detected = false
                 dogs.forEach(dog => {
