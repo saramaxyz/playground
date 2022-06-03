@@ -1,7 +1,7 @@
 import axios from "axios"
 import qs from "qs";
 
-export const apiAddress = "http://54.183.216.31"
+export const apiAddress = "https://dcppo21tv092m.cloudfront.net"
 export const coursesUrl = apiAddress + "/api/courses"
 
 

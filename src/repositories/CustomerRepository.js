@@ -1,7 +1,7 @@
 import axios from "axios"
 import qs from "qs";
 
-export const apiAddress = "http://54.183.216.31"
+export const apiAddress = "https://dcppo21tv092m.cloudfront.net"
 export const customersUrl = apiAddress + "/api/wishlists"
 
 
@@ -27,6 +27,7 @@ class CustomerRepository {
         }
         return await axios(config)
             .then(function (response) {
+
                 const user = response.data.data
                 if (user.length === 0)
                     return null
@@ -86,7 +87,6 @@ class CustomerRepository {
 
 
         } else {
-            console.log(user)
             return await this.bulkUpdate(userObject, user.id)
         }
     }
