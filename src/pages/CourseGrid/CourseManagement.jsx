@@ -12,13 +12,12 @@ const CourseManagement = () => {
             setCourses(courseObjects.map((course) => course.attributes))
         })
     }, [])
-
     return <div className={"training-management"}>
         {
-            courses.map(({course_id, user_id, title, owner, image}) => <CourseCard key={course_id} userId={user_id}
+            courses.map(({course_id, user_id, title, image}) => <CourseCard key={course_id} userId={user_id}
                                                                                    className={"training-management__card"}
                                                                                    image={image} courseId={course_id}
-                                                                                   owner={owner} title={title}
+                                                                                   title={title}
             />)
         }
 
