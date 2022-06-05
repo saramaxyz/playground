@@ -1,10 +1,9 @@
 import {all} from "redux-saga/effects"
-import courses from "./courses"
-
+import customer from "./customer"
 
 export default function*(){
 
     yield all([
-        courses(),
+        customer(),
     ])
 }

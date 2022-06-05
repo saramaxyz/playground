@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import CourseHero from "./CourseHero";
 import Sidebar from "../../components/Sidebar";
 import GridContainer from "../../components/GridContainer";
-import CourseManagement from "../CourseGrid/CourseManagement";
 
 
 const CoursePage = ({sections,title,description,shortDescription,courseId}) => {
@@ -22,5 +21,7 @@ const CoursePage = ({sections,title,description,shortDescription,courseId}) => {
     </div>
 
 }
+
+
 
 export default connect()(CoursePage)

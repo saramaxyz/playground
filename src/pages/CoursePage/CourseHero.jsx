@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import CourseRepository from "../../repositories/CourseRepository";
 import {Button} from "@material-ui/core";
 import CustomerRepository from "../../repositories/CustomerRepository";
+import {userAddCourse} from "../../actions";
 
 /*
 {
@@ -17,12 +18,14 @@ import CustomerRepository from "../../repositories/CustomerRepository";
  */
 
 
-const CourseHero = ({auth, className = ""}) => {
+const CourseHero = ({auth, customer, dispatchUserAdd, className = ""}) => {
 
     const {googleId, givenName = "", familyName = "", email = ""} = auth
     const {courseId} = useParams()
     const [course, setCourse] = useState({})
     const courseRepo = new CourseRepository()
+    const {courses = []} = customer
+
     useEffect(() => {
         courseRepo.getCourseDetails(courseId).then((courseList) => {
             const courseDetails = courseList[0]
@@ -40,19 +43,20 @@ const CourseHero = ({auth, className = ""}) => {
             })
         })
     }, [])
-
     const {title, shortDescription, description, imageSrc} = course
-    const repo = new CustomerRepository()
     const handleClick = () => {
         const {courseId} = course
-
-        repo.updateUser({
-            user_id: googleId,
-            full_name: givenName + " " + familyName,
+        dispatchUserAdd({
+            courseId,
             email,
-            courses: [courseId]
-        }).then(console.log)
+            userId: googleId,
+            fullName: givenName + " " + familyName,
+        })
+
     }
+    courses.filter((course) => {
+        return parseFloat(course.courseId) === parseFloat(courseId)
+    })
 
     return <div className={"course-hero " + className}>
         <div className={"course-hero__text"}>
@@ -61,12 +65,22 @@ const CourseHero = ({auth, className = ""}) => {
         </div>
         <div className={"course-hero__cta"}>
             <img src={imageSrc} className={"course-hero__image"}/>
-            <Button onClick={handleClick}>Add me to waitlist</Button>
+            {
+                (courses.filter((course) => parseFloat(course.courseId) === parseFloat(courseId)).length > 0) ?
+                    <Button disabled onClick={handleClick}>Add me to waitlist</Button> :
+                    <Button onClick={handleClick}>Add me to waitlist</Button>
+            }
         </div>
 
     </div>
 }
 
-const mapStateToProps = ({auth}) => ({auth})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchUserAdd: (courseId) => dispatch(userAddCourse(courseId))
+    }
+}
 
-export default connect(mapStateToProps)(CourseHero);
+const mapStateToProps = ({auth, customer}) => ({auth, customer})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseHero);

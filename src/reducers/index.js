@@ -1,8 +1,9 @@
 import {combineReducers} from "redux"
 import auth from "./auth"
-import courses from "./courses"
+import customer from "./customer"
 
 export default combineReducers({
     auth,
-    courses
+    customer,
+
 })
