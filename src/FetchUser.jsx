@@ -5,11 +5,14 @@ import {fetchUser} from "./actions";
 
 const FetchUser = ({dispatchFetchUser,auth}) => {
     useEffect(() => {
-        const repo = new CustomerRepository()
-        const {googleId} = auth
-        repo.getUser(googleId).then((user) => {
-            dispatchFetchUser(googleId)
-        })
+        if(auth !== null){
+            const repo = new CustomerRepository()
+            const {googleId} = auth
+            repo.getUser(googleId).then((user) => {
+                dispatchFetchUser(googleId)
+            })
+        }
+
     })
 
 }

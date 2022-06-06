@@ -2,15 +2,16 @@ import React from "react"
 import Sidebar from "../components/Sidebar";
 import GridContainer from "../components/GridContainer";
 import CreateAnAction from "../components/CreateAnAction";
+import NavHeader from "../components/NavHeader";
 
 export default () => {
     return <div style={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         minWidth: "100vw",
         minHeight: "100vh",
     }}>
-        <Sidebar/>
+        <NavHeader/>
         <GridContainer>
             <CreateAnAction/>
         </GridContainer>

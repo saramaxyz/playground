@@ -15,7 +15,7 @@ import CourseDashboard from "./pages/CourseDashboard";
 import CourseList from "./pages/CourseList";
 import CourseGrid from "./pages/CourseGrid"
 import CoursePage from "./pages/CoursePage";
-
+import DummyPage from "./pages/DummyPage"
 
 
 export default () => (<Routes>
