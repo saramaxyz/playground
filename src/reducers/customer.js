@@ -1,10 +1,17 @@
 import {BULK_UPDATE_USER, STORE_SET_USER, STORE_USER_ADD_COURSE, STORE_USER_DELETE_COURSE} from "../actions";
 
-export default (state = {
+const defaultState = {
     courses:[]
-}, {type, payload}) => {
+}
+export default (state = defaultState, {type, payload}) => {
+
+    if(payload === null){
+        payload = defaultState
+    }
 
     const {courseId} = payload || {}
+
+
     switch (type) {
         case STORE_SET_USER:
             return payload
