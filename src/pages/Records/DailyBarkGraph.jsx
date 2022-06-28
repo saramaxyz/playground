@@ -61,21 +61,18 @@ const DailyBarkGraph = ({date, data = null}) => {
         }));
         y.domain([0, 1]);
 
-
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x).tickValues(d3.axisBottom(x).scale().ticks(16).slice(1)));
 
-        console.log(d3.axisBottom(x).tickValues())
 
         svg.append("g")
             .call(
-                d3.axisLeft(y)
-                    .tickFormat((d,i) => {
-                        if(d === 1) return "BARK"
-                        else return null
-                    }).tickValues([1])
-            );
+                d3.axisLeft(y).tickValues([])
+            )
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(g => g.select(".domain").remove())
+
 
 
         var valueLine = d3.line()
@@ -94,7 +91,7 @@ const DailyBarkGraph = ({date, data = null}) => {
             .attr("class", "line")
             .attr("fill", "none")
             .attr("stroke", "red")
-            .attr("stroke-width", 16)
+            .attr("stroke-width", height*2)
             .attr("d", valueLine);
     }, [data])
 
