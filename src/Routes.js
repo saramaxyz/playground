@@ -18,6 +18,23 @@ import CoursePage from "./pages/CoursePage";
 import Records from "./pages/Records"
 
 
+// export default () => (<Routes>
+//     {/*<Route exact path={"/"} element={<Login/>}/>*/}
+//     <Route exact path={"/dogs"} element={<Dogs/>}/>
+//     <Route exact path={"/dogs/:dogName"} element={<DogImages/>}/>
+//     <Route exact path={"/training"} element={<Training/>}/>
+//     <Route exact path={"/history"} element={<History/>}/>
+//     <Route exact path={"/history/:videoId"} element={<Action/>}/>
+//     <Route exact path={"/insertDog"} element={<DogForm/>}/>
+//     <Route exact path={"/createAction"} element={<CreateAction/>}/>
+//     <Route exact path={"/training/cgc"} element={<CgcPage/>}/>
+//     <Route exact path={"/training/:action"} element={<TrainingUpload/>}/>
+//     {/*<Route exact path={"/courses"} element={<Barrier><CourseGrid/></Barrier>}/>*/}
+//     {/*<Route exact path={"/courses/:courseId"} element={<Barrier><CoursePage/></Barrier>}/>*/}
+//     <Route exact path={"/"} element={<Records/>}/>
+//
+// </Routes>)
+
 export default () => (<Routes>
     <Route exact path={"/"} element={<Login/>}/>
     <Route exact path={"/dogs"} element={<Barrier><Dogs/></Barrier>}/>

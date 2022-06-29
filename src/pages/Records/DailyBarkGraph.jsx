@@ -57,7 +57,7 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
         })
         const timeSeries = convertToTimeSeries(date, data).map(([date, value]) => [parseTime(date), value])
 
-        var margin = {top: 16, right: 20, bottom: 64, left: 20},
+        var margin = {top: 16, right: 20, bottom: 256, left: 20},
             targetWidth = 640 - margin.left - margin.right,
             targetHeight = 500 - margin.top - margin.bottom;
 
@@ -142,18 +142,18 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
                 .style("cursor", "pointer")
         })
 
-        const touched = function (_, i) {
-            let controlDate = new Date(i)
+        const clicked = (_, i) => {
+            let controlDate = new Date(i[0])
 
             data.forEach(([date, end, prefix]) => {
                 date = new Date(date)
-                date.setMinutes(date.getMinutes() - 10)
+                date.setMinutes(date.getMinutes())
                 if (date.getHours() === controlDate.getHours() && date.getMinutes() === controlDate.getMinutes()) {
                     setDrawerOpen(true)
                     setItem({
                         date,
                         prefix,
-                        duration: (end.getTime()-date.getTime()) / 100 / 20 / 60,
+                        duration: (end.getTime()-date.getTime()) / 100 / 10 / 60,
                         url:"https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prefix
                     })
                 }
@@ -162,14 +162,39 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
                 .attr("fill", "yellow")
         }
 
-        rects.on("click", touched)
+        const touched = (a,b,c) => {
+            let controlDate = new Date(b[0])
 
-        svg.on("touchstart", touched);
-        rects.on("mouseout", function (d) {
+            data.forEach(([date, end, prefix]) => {
+                date = new Date(date)
+                if (date.getHours() === controlDate.getHours() && date.getMinutes() === controlDate.getMinutes()) {
+                    setDrawerOpen(true)
+                    setItem({
+                        date,
+                        prefix,
+                        duration: (end.getTime()-date.getTime()) / 100 / 10 / 60,
+                        url:"https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prefix
+                    })
+                }
+            })
             d3.select(this)
-                .attr("fill", "red")
-                .style("cursor", "default")
-        })
+                .attr("fill", "yellow")
+        }
+        if(window.ontouchstart === undefined){
+            rects.on("click", clicked)
+            rects.on("mouseout", function (d) {
+                d3.select(this)
+                    .attr("fill", "red")
+                    .style("cursor", "default")
+            })
+        }
+
+        else{
+            rects.on("click", touched)
+
+        }
+
+
 
 
     }, [data,size.width])
