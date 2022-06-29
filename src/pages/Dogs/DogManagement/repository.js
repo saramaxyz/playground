@@ -1,4 +1,4 @@
-import getApi from "../../repositories/getApi";
+import getApi from "../../../repositories/getApi";
 
 
 class DogManagementRepository {

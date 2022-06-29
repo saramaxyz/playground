@@ -29,9 +29,10 @@ export default () => (<Routes>
     <Route exact path={"/createAction"} element={<Barrier><CreateAction/></Barrier>}/>
     <Route exact path={"/training/cgc"} element={<Barrier><CgcPage/></Barrier>}/>
     <Route exact path={"/training/:action"} element={<Barrier><TrainingUpload/></Barrier>}/>
-    <Route exact path={"/courses"} element={<Barrier><CourseGrid/></Barrier>}/>
-    <Route exact path={"/courses/:courseId"} element={<Barrier><CoursePage/></Barrier>}/>
+    {/*<Route exact path={"/courses"} element={<Barrier><CourseGrid/></Barrier>}/>*/}
+    {/*<Route exact path={"/courses/:courseId"} element={<Barrier><CoursePage/></Barrier>}/>*/}
     <Route exact path={"/barks"} element={<Barrier><Records/></Barrier>}/>
     <Route exact path={"/home/teaching"} element={<Barrier><CourseList/></Barrier>}/>
     <Route exact path={"/home/teaching/:courseId"} element={<Barrier><CourseDashboard/></Barrier>}/>
+
 </Routes>)
