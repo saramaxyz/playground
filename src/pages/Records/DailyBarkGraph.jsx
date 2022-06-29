@@ -1,5 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import * as d3 from "d3";
+import {connect} from "react-redux"
+
 
 const convertToTimeSeries = (date, intervals) => {
 
@@ -30,9 +32,10 @@ const convertToTimeSeries = (date, intervals) => {
     return out
 }
 
-const DailyBarkGraph = ({date, data = null}) => {
+const DailyBarkGraph = ({auth,date, data = null}) => {
 
     const ref = useRef()
+
 
     useEffect(() => {
         if (data === null) {
@@ -41,6 +44,8 @@ const DailyBarkGraph = ({date, data = null}) => {
         const parseTime = d3.timeParse("%H:%M")
         const {current} = ref
         current.querySelectorAll("*").forEach(child => child.remove())
+
+
 
         const timeSeries = convertToTimeSeries(date, data).map(([date, value]) => [parseTime(date), value])
 
@@ -114,4 +119,6 @@ const DailyBarkGraph = ({date, data = null}) => {
     </>
 }
 
-export default DailyBarkGraph
+const mapStateToProps = ({auth}) => ({auth})
+
+export default connect(mapStateToProps)(DailyBarkGraph)
