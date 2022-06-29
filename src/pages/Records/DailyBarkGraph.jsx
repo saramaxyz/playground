@@ -52,7 +52,7 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
         })
         const timeSeries = convertToTimeSeries(date, data).map(([date, value]) => [parseTime(date), value])
 
-        var margin = {top: 20, right: 20, bottom: 50, left: 96},
+        var margin = {top: 20, right: 20, bottom: 50, left: 32},
             width = 640 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
@@ -154,21 +154,28 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
 
 
     if (data === null) {
-        return <h2>
+        return <h2 style={{
+            textAlign: "center"
+        }}>
             No activities detected.
         </h2>
     }
 
 
-    return <>
+    return <div style={{
+        width:"100%",
+        height:"16rem",
+        display: "flex",
+        flexDirection:"column",
+        alignItems:"center"
+    }}>
         <h2 style={{
-            marginLeft: "4rem"
+            textAlign: 'center',
+            marginTop:"2rem",
+            marginBottom:"2rem"
         }}>Bark calendar</h2>
-        <div ref={ref} style={{
-            width: "100vw",
-            height: "100vh"
-        }} id={"daily-bark"}/>
-    </>
+        <div ref={ref} id={"daily-bark"}/>
+    </div>
 }
 
 const mapStateToProps = ({auth}) => ({auth})

@@ -6,10 +6,12 @@ const GridContainer = ({children}) => {
     return <div style={{
         overflowY: "scroll",
         width:"100%",
-        height:"100%",
+        display:"flex",
+        flexDirection:"column",
         flexGrow:1
     }}>
-        {children}
+            {children}
+
     </div>
 }
 
