@@ -114,7 +114,9 @@ const ActivityCalendar = ({auth}) => {
 
 
     if (data.length === 0)
-        return null
+        return <h2>
+            No barks recorded
+        </h2>
 
 
     const dailyBarkData = processBarkData(data)
