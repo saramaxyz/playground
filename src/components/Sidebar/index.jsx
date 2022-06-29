@@ -23,8 +23,7 @@ const Sidebar = ({auth,dispatchLogout}) => {
         <h3 className={"sidebar__h3"}>{givenName} {familyName}</h3>
         <div className={"sidebar__link-list"}>
             <Link className={"sidebar__link-list__element"} to={"/dogs"}>Dogs</Link>
-            <Link className={"sidebar__link-list__element"} to={"/courses"}>Courses</Link>
-            <Link className={"sidebar__link-list__element"} to={"/history"}>History</Link>
+            <Link className={"sidebar__link-list__element"} to={"/barks"}>Barks</Link>
             <Link onClick={dispatchLogout} className={"sidebar__link-list__element"} to={"/"}>Sign Out</Link>
         </div>
 

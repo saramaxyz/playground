@@ -15,7 +15,7 @@ import CourseDashboard from "./pages/CourseDashboard";
 import CourseList from "./pages/CourseList";
 import CourseGrid from "./pages/CourseGrid"
 import CoursePage from "./pages/CoursePage";
-
+import Records from "./pages/Records"
 
 
 export default () => (<Routes>
@@ -31,6 +31,7 @@ export default () => (<Routes>
     <Route exact path={"/training/:action"} element={<Barrier><TrainingUpload/></Barrier>}/>
     <Route exact path={"/courses"} element={<Barrier><CourseGrid/></Barrier>}/>
     <Route exact path={"/courses/:courseId"} element={<Barrier><CoursePage/></Barrier>}/>
+    <Route exact path={"/barks"} element={<Barrier><Records/></Barrier>}/>
     <Route exact path={"/home/teaching"} element={<Barrier><CourseList/></Barrier>}/>
     <Route exact path={"/home/teaching/:courseId"} element={<Barrier><CourseDashboard/></Barrier>}/>
 </Routes>)
