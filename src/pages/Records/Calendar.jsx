@@ -101,7 +101,6 @@ const ActivityCalendar = ({auth}) => {
                     tmp.setHours(dateValues[3])
                     tmp.setMinutes(timeValues[1])
                     tmp.setSeconds(timeValues[2])
-                    console.log(content.Key)
                     barkData.push({
                         date: tmp,
                         duration: 10,
@@ -142,7 +141,6 @@ const ActivityCalendar = ({auth}) => {
                     onChange={setDate}
                     value={date}
                     formatDay={(locale, date) => {
-                        console.log(dailyBarkData[date])
                         return <div style={{
                             position: 'relative',
                         }}>
