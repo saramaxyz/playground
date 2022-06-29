@@ -130,12 +130,11 @@ const ActivityCalendar = ({auth}) => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: "flex-start",
+            marginTop:"2rem"
         }}>
             <div style={{
                 display: 'flex',
-                justifyContent: "center",
-                marginTop: "2rem",
-                marginLeft: "4rem"
+                justifyContent: "center"
             }}>
                 <Calendar
                     minDate={new Date(2022, 0)}

@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
 import {connect} from "react-redux"
 import BottomDrawer from "./BottomDrawer";
+import useScreenSize from 'use-screen-size'
+
 
 const convertToTimeSeries = (date, intervals) => {
 
@@ -39,7 +41,7 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
     const ref = useRef()
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [item, setItem] = useState(null)
-
+    const size = useScreenSize()
 
     useEffect(() => {
         if (data === null) {
@@ -49,16 +51,20 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
         const {current} = ref
         current.querySelectorAll("*").forEach(child => child.remove())
 
-
         const durationSeries = data.map(d => {
             const hourAndMinute = `${new Date(d[0]).getHours()}:${new Date(d[0]).getMinutes()}`
             return [parseTime(hourAndMinute), (d[1] - d[0]) / 60 / 1000]
         })
         const timeSeries = convertToTimeSeries(date, data).map(([date, value]) => [parseTime(date), value])
 
-        var margin = {top: 20, right: 20, bottom: 50, left: 32},
-            width = 640 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+        var margin = {top: 16, right: 20, bottom: 64, left: 20},
+            targetWidth = 640 - margin.left - margin.right,
+            targetHeight = 500 - margin.top - margin.bottom;
+
+        const aspect = targetHeight / targetWidth
+
+        const width = size.width * .75
+        const height = width * aspect
 
         var svg = d3.select("#daily-bark").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -123,6 +129,12 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
             .attr("font-size", "10px")
             .attr("fill", "white")
 
+        d3.select(window)
+            .on("resize", function() {
+                const targetWidth = svg.node().getBoundingClientRect().width;
+                svg.attr("width", targetWidth);
+                svg.attr("height", targetWidth / aspect);
+            });
 
         rects.on("mouseover", function (d) {
             d3.select(this)
