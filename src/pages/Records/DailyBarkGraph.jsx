@@ -131,10 +131,10 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
 
         d3.select(window)
             .on("resize", function() {
-                const targetWidth = svg.node().getBoundingClientRect().width;
-                svg.attr("width", targetWidth);
-                svg.attr("height", targetWidth / aspect);
+                svg.attr("width", width);
+                svg.attr("height", height);
             });
+
 
         rects.on("mouseover", function (d) {
             d3.select(this)
@@ -165,7 +165,6 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
         rects.on("click", touched)
 
         svg.on("touchstart", touched);
-
         rects.on("mouseout", function (d) {
             d3.select(this)
                 .attr("fill", "red")
@@ -173,7 +172,7 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
         })
 
 
-    }, [data])
+    }, [data,size.width])
 
 
     if (data === null) {
