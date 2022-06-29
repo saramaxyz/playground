@@ -51,10 +51,10 @@ function processBarkData(barkData) {
     var toReturn = {};
 
     for (let listItem of barkData) {
-        const {date, duration} = listItem
+        const {date, duration,prefix} = listItem
         const dateKey = getDateKey(new Date(date))
         const finishDate = new Date(new Date(date).getTime() + 60000*duration )
-        const interval = [date,finishDate]
+        const interval = [date,finishDate,prefix]
         if (toReturn[dateKey] === undefined){
             toReturn[dateKey] = [ interval ]
 
@@ -74,12 +74,14 @@ const ActivityCalendar = ({auth}) => {
     const [data, setData] = useState([])
     const [date, setDate] = useState(new Date());
     const {googleId} = auth
+    // const googleId = "115087737562134809990"
+    const prefix = googleId + "/"
 
     useEffect(() => {
         const params = {
             Bucket:"sarama-audio-files",
             Delimiter:"",
-            Prefix:googleId + "/"
+            Prefix:prefix
         }
 
         s3.listObjectsV2(params, (err, data) => {
@@ -101,7 +103,8 @@ const ActivityCalendar = ({auth}) => {
                     tmp.setSeconds(timeValues[2])
                     barkData.push({
                         date:tmp,
-                        duration:10
+                        duration:10,
+                        prefix:content.Key
                     })
                 }
                 setData(barkData)
