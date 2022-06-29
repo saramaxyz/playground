@@ -16,7 +16,6 @@ const Bread = () => {
         {
             paths.map((value, index) => {
                 const url = paths.slice(0,index+1).join("/")
-                console.log(url)
                 return <MuiLink className={"mui-link"} underline="hover" color="white" onClick={() => navigate(url)}>
                     {value}
                 </MuiLink>
