@@ -72,6 +72,7 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
+    "immutable": "^4.0.0",
     "node-sass": "^7.0.1"
   }
 }
