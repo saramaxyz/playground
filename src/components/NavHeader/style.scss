@@ -31,6 +31,7 @@
     border-right:3px solid gray;
   }
 
+
   & > div:nth-child(2){
     width:100%;
     background-color: $color-secondary-dark;
@@ -40,6 +41,13 @@
       margin-left:1rem;
     }
   }
+
+  @media screen and (max-width: 750px) {
+    & > div:nth-child(2) {
+      flexShrink:1
+    }
+  }
+
 
   & > div:nth-child(3){
     cursor:pointer;
@@ -51,4 +59,13 @@
     }
   }
 }
+.bread {
+  color:white;
+}
 
+.mui-link{
+  color:white;
+  &:hover{
+    cursor:pointer;
+  }
+}

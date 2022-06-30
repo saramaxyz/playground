@@ -1,18 +1,35 @@
 import React, {useEffect, useState} from "react"
 import "./style.scss"
-import img from "./img.png"
-import {Link, useNavigate} from "react-router-dom";
-import { Menu as MenuIcon } from '@mui/icons-material';
-import {MenuItem, Menu} from "@material-ui/core";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Menu as MenuIcon} from '@mui/icons-material';
+import {MenuItem, Menu, Breadcrumbs} from "@material-ui/core";
 import {logout} from "../../actions";
 import {connect} from "react-redux";
+import {Link as MuiLink} from "@mui/material";
 
+const Bread = () => {
+    const {pathname} = useLocation();
+    const paths = pathname.slice("/").split("/")
+    const navigate = useNavigate()
+
+    return <Breadcrumbs className={"bread"} separator=">" aria-label="breadcrumb" color={"white"}>
+        {
+            paths.map((value, index) => {
+                const url = paths.slice(0,index+1).join("/")
+                return <MuiLink className={"mui-link"} underline="hover" color="white" onClick={() => navigate(url)}>
+                    {value}
+                </MuiLink>
+            })
+
+        }
+
+    </Breadcrumbs>
+}
 
 
 const NavHeader = ({dispatchLogout}) => {
 
     const navigate = useNavigate()
-
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
@@ -26,12 +43,14 @@ const NavHeader = ({dispatchLogout}) => {
 
     return <header className={"nav-header"}>
         <div>
-            <Link to={"/courses"}>Sarama</Link>
+            <Link to={"/dogs"}>Sarama</Link>
         </div>
         <div>
+            <Bread/>
+
         </div>
         <div onClick={handleClick}>
-            <MenuIcon   />
+            <MenuIcon/>
         </div>
         <Menu
             open={isOpen}
@@ -48,13 +67,12 @@ const NavHeader = ({dispatchLogout}) => {
                 horizontal: 'left',
             }}
         >
-            <MenuItem className={"nav-header__menu-item"} onClick={()=>navigate("/dogs")}>Dogs</MenuItem>
-            <MenuItem className={"nav-header__menu-item"} onClick={()=>navigate("/courses")}>Courses</MenuItem>
-            <MenuItem className={"nav-header__menu-item"} onClick={()=>navigate("/history")}>History</MenuItem>
-            <MenuItem className={"nav-header__menu-item"} onClick={()=> {
+            <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/dogs")}>Dogs</MenuItem>
+            <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/barks")}>Barks</MenuItem>
+            <MenuItem className={"nav-header__menu-item"} onClick={() => {
                 dispatchLogout()
                 navigate("/")
-            }} >Sign Out</MenuItem>
+            }}>Sign Out</MenuItem>
         </Menu>
     </header>
 }
@@ -64,8 +82,7 @@ const mapStateToProps = ({auth}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchLogout: () =>  dispatch(logout())
+    dispatchLogout: () => dispatch(logout())
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(NavHeader)
-
+export default connect(mapStateToProps, mapDispatchToProps)(NavHeader)

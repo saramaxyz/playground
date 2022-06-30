@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
-import AddItem from "../AddItem";
+import AddItem from "../../../components/AddItem";
 import {useNavigate} from "react-router";
-import getApi from "../../repositories/getApi";
+import getApi from "../../../repositories/getApi";
 import "./style.scss"
 import {Fab} from "@material-ui/core";
 import DeleteIcon from '@mui/icons-material/Delete';
