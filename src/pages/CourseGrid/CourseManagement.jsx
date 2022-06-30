@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react"
 import {connect} from "react-redux";
 import CourseRepository from "../../repositories/CourseRepository";
 import CourseCard from "./CourseCard"
+import {bulkUpdateUser} from "../../actions";
 
-const CourseManagement = () => {
+const CourseManagement = ({}) => {
 
     const courseRepo = new CourseRepository()
     const [courses, setCourses] = useState([])
@@ -24,5 +25,8 @@ const CourseManagement = () => {
     </div>
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    dispatchBulkUpdate : (userObject) => dispatch(bulkUpdateUser(userObject))
+})
 
-export default connect()(CourseManagement)
+export default connect(null,mapDispatchToProps)(CourseManagement)

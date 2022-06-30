@@ -3,18 +3,17 @@ import {connect} from "react-redux";
 import CourseHero from "./CourseHero";
 import Sidebar from "../../components/Sidebar";
 import GridContainer from "../../components/GridContainer";
-import CourseManagement from "../CourseGrid/CourseManagement";
+import NavHeader from "../../components/NavHeader";
 
 
 const CoursePage = ({sections,title,description,shortDescription,courseId}) => {
     return <div style={{
         display: 'flex',
-        flexDirection: 'row',
-        width:"100vw",
-        height:"100vh"
-
+        flexDirection: 'column',
+        minWidth: "100vw",
+        minHeight: "100vh",
     }}>
-        <Sidebar/>
+        <NavHeader/>
         <GridContainer>
             <CourseHero title={title} shortDescription={shortDescription} courseId={courseId}/>
 
@@ -22,5 +21,7 @@ const CoursePage = ({sections,title,description,shortDescription,courseId}) => {
     </div>
 
 }
+
+
 
 export default connect()(CoursePage)

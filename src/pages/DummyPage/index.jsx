@@ -1,12 +1,8 @@
 import React from "react"
-import "./style.scss"
-import Sidebar from "../../components/Sidebar";
 import GridContainer from "../../components/GridContainer";
-import CourseManagement from "./CourseManagement";
-import NavHeader from "../../components/NavHeader";
-
-
+import NavHeader from "../../components/NavHeader"
 export default () => {
+
     return <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -15,8 +11,6 @@ export default () => {
     }}>
         <NavHeader/>
         <GridContainer>
-            <CourseManagement/>
-
         </GridContainer>
     </div>
 }

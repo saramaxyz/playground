@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {useNavigate} from "react-router";
 import getApi from "../repositories/getApi";
 import {CircularProgress} from "@material-ui/core";
+import NavHeader from "../components/NavHeader";
 
 
 
@@ -39,11 +40,11 @@ const DogForm = ({auth}) => {
 
     return <div style={{
         display: 'flex',
-        flexDirection: 'row',
-        width: "100vw",
-        height: "100vh",
+        flexDirection: 'column',
+        minWidth: "100vw",
+        minHeight: "100vh",
     }}>
-        <Sidebar/>
+        <NavHeader/>
 
         <form style={{
             width:"100%",

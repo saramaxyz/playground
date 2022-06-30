@@ -1,9 +1,10 @@
 import React from "react"
 import Sidebar from "../../components/Sidebar";
-import VideoUpload from "./VideoUpload";
+import HistoryGrid from "../../components/HistoryManagement";
+import GridContainer from "../../components/GridContainer";
 import NavHeader from "../../components/NavHeader";
 
-const TrainingUpload =  () => {
+export default () => {
 
     return <div style={{
         display: 'flex',
@@ -12,9 +13,11 @@ const TrainingUpload =  () => {
         minHeight: "100vh",
     }}>
         <NavHeader/>
-        <VideoUpload/>
+        <GridContainer>
+
+            <HistoryGrid/>
+        </GridContainer>
     </div>
 }
 
 
-export default TrainingUpload
