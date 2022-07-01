@@ -133,16 +133,22 @@ const ClusterPlot = ({}) => {
             .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+
+        const xDomain = d3.extent(data, (d) => {
+            return d.x;
+        })
         var x = d3.scaleLinear()
-            .domain(d3.extent(data, (d) => {
-                return d.x;
-            }))
+            .domain([xDomain[0]-2,xDomain[1]+2])
             .range([0, width]);
 
+        const yDomain = d3.extent(data, (d) => {
+            return d.y;
+        })
         var y = d3.scaleLinear()
-            .domain(d3.extent(data, (d) => {
-                return d.y;
-            }))
+            .domain([
+                yDomain[0] - 2,
+                yDomain[1] + 2
+            ])
             .range([height, 0]);
 
         svg.selectAll("circle")
@@ -164,26 +170,28 @@ const ClusterPlot = ({}) => {
         // var x = d3.scaleTime().range([0, width]);
         // var y = d3.scaleLinear().range([height, 0]);
 
+        const handleClick = (_,d) => {
+            data.forEach(({x,y,url}) => {
+                if (d.x === x && d.y === y) {
+                    const link = "https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prafulId + "/" + url
+                    setDrawerOpen(true)
+                    setItem({
+                        prefix:url,
+                        url: link
+                    })
+                }
+            })
+            d3.select(this)
+        }
+
         svg.append("g")
             .attr("transform", `translate(0, ${margin.left})`)
             .selectAll("dot")
             .data(data)
             .enter()
             .append("circle")
-            .on("click", (_,d) => {
+            .on("click", handleClick)
 
-                data.forEach(({x,y,url}) => {
-                    if (d.x === x && d.y === y) {
-                        const link = "https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prafulId + "/" + url
-                        setDrawerOpen(true)
-                        setItem({
-                            prefix:url,
-                            url: link
-                        })
-                    }
-                })
-                d3.select(this)
-            })
             .attr("url", d => d.url)
             .attr("cx", function (d) {
                 return x(d.x);
@@ -191,7 +199,7 @@ const ClusterPlot = ({}) => {
             .attr("cy", function (d) {
                 return y(d.y);
             })
-            .attr("r", 5)
+            .attr("r", 10)
             .style("fill", "#69b3a2")
 
 

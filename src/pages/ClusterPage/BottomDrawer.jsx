@@ -51,9 +51,6 @@ const BottomDrawer = ({open, setDrawer, item}) => {
                     URL: <a href={url}>{url}</a>
                 </ListItem>
                 <ListItem>
-                    Duration: {duration}s
-                </ListItem>
-                <ListItem>
                     Activity: {activity}
                 </ListItem>
                 <ListItem>
