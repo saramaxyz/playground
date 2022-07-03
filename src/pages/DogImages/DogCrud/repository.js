@@ -1,3 +1,4 @@
+import getApi from "../../../repositories/getApi";
 import AWS from 'aws-sdk';
 
 AWS.config.update({
@@ -9,16 +10,18 @@ const s3 = new AWS.S3();
 
 class DogCrudRepository {
 
-    purgeDog = async (googleId, imageId) => {
+    deleteImage = async (googleId, imageId) => {
+        return await getApi()
+            .deleteImage(googleId, imageId)
 
     }
 
-    getQueryResult = async (googleId) => {
+    getQueryResult = async (googleId, dogName) => {
         return new Promise((resolve, reject) => {
             const bucketName = "sarama-user-dogs"
-            const prefix = googleId
+            const prefix = googleId + "/" + dogName
             const params = {
-                Bucket: bucketName,
+                Bucket: "sarama-user-dogs",
                 Delimiter: "",
                 Prefix: prefix
             }
@@ -28,16 +31,18 @@ class DogCrudRepository {
                     reject(err, err.stack);
                 } else {
                     const contents = data.Contents.filter(({Key}) => !Key.endsWith("/"))
-                    const dogDict = {}
+                    const dogData = []
                     for (let content of contents) {
                         const contentKey = content.Key
                         const dogId = contentKey.split("/")[1]
                         const imageId = contentKey.split("/")[2]
 
-                        dogDict[dogId] = `https://${bucketName}.s3.us-west-1.amazonaws.com/${contentKey}`
-
+                        const mediaUrl = `https://${bucketName}.s3.us-west-1.amazonaws.com/${contentKey}`
+                        dogData.push({
+                            id:imageId,
+                            media_url:mediaUrl
+                        })
                     }
-                    const dogData = Object.entries(dogDict).map(([dogName,media]) => ({name:dogName,mediaUrl:media}))
                     resolve(dogData)
 
                 }

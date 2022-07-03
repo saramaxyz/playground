@@ -2,12 +2,11 @@ import React, {useEffect, useState} from "react"
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import DogCrudRepository from "./repository"
-import Card from "../Card";
+import Card from "../../../components/Card";
 import "./style.scss"
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Fab} from "@material-ui/core";
 import {useNavigate} from "react-router";
-import AddItem from "../AddItem";
 
 const DogCrud = ({googleId}) => {
 
@@ -18,7 +17,10 @@ const DogCrud = ({googleId}) => {
     const [dogImages, setDogImages] = useState([])
 
     useEffect(() => {
-        repo.getQueryResult(googleId, dogName).then(setDogImages)
+        repo.getQueryResult(googleId, dogName).then((data )=>{
+            console.log(data)
+            setDogImages(data)
+        })
 
     }, [])
 
