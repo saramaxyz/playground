@@ -24,6 +24,7 @@ const Sidebar = ({auth,dispatchLogout}) => {
         <div className={"sidebar__link-list"}>
             <Link className={"sidebar__link-list__element"} to={"/dogs"}>Dogs</Link>
             <Link className={"sidebar__link-list__element"} to={"/barks"}>Barks</Link>
+            <Link className={"sidebar__link-list__element"} to={"/data"}>Data</Link>
             <Link onClick={dispatchLogout} className={"sidebar__link-list__element"} to={"/"}>Sign Out</Link>
         </div>
 

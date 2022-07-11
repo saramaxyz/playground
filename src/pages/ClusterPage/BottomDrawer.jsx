@@ -21,7 +21,6 @@ const BottomDrawer = ({open, setDrawer, item}) => {
         return null
 
     const {prefix = "", duration = 0, url = ""} = item || {}
-    console.log(item)
 
     const fileName = prefix
     const activity = fileName.split(";")[1]

@@ -16,7 +16,7 @@ const Bread = () => {
         {
             paths.map((value, index) => {
                 const url = paths.slice(0,index+1).join("/")
-                return <MuiLink className={"mui-link"} underline="hover" color="white" onClick={() => navigate(url)}>
+                return <MuiLink key={url} className={"mui-link"} underline="hover" color="white" onClick={() => navigate(url)}>
                     {value}
                 </MuiLink>
             })
@@ -70,6 +70,7 @@ const NavHeader = ({dispatchLogout}) => {
             <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/dogs")}>Dogs</MenuItem>
             <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/barks")}>Barks</MenuItem>
             <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/cluster")}>Cluster</MenuItem>
+            <MenuItem className={"nav-header__menu-item"} onClick={() => navigate("/data")}>Data</MenuItem>
             <MenuItem className={"nav-header__menu-item"} onClick={() => {
                 dispatchLogout()
                 navigate("/")
