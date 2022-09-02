@@ -1,28 +1,22 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {connect} from "react-redux";
-import AddItem from "../../../components/AddItem";
 import {useNavigate} from "react-router";
-import getApi from "../../../repositories/getApi";
 import "./style.scss"
 import {Fab} from "@material-ui/core";
-import DeleteIcon from '@mui/icons-material/Delete';
 import PageviewIcon from '@mui/icons-material/Pageview';
-import DogManagementRepository from "./repository";
+import Kai from "./Kai.jpg"
+import Kash from "./Kash.png"
 
-const DogCard = ({className="",name,mediaUrl,googleId}) => {
+const DogCard = ({className="",name,mediaUrl}) => {
 
-    const repo = new DogManagementRepository()
     const navigate = useNavigate()
 
     return <div className={"dog-card " + className} >
         <img className={"dog-card__image"}  src={mediaUrl} />
         <p className={"dog-card__title"}>{name}</p>
         <div className={"dog-card__buttons"}>
-            <Fab onClick={() => {navigate(encodeURIComponent(name),{state:{googleId}})}} color="primary" aria-label="view">
+            <Fab onClick={() => navigate(`/${encodeURIComponent(name)}`)} color="primary" aria-label="view">
                 <PageviewIcon />
-            </Fab>
-            <Fab onClick={() => repo.purgeDog(googleId,name)} color="secondary" aria-label="delete">
-                <DeleteIcon />
             </Fab>
         </div>
     </div>
@@ -30,25 +24,12 @@ const DogCard = ({className="",name,mediaUrl,googleId}) => {
 }
 
 
-const DogManagement = ({auth}) => {
-
-    const {googleId} = auth
-    const navigate = useNavigate()
-    const [dogs,setDogs] = useState([])
-    const repo = new DogManagementRepository()
-
-    // Call only googleId has changed.
-    useEffect(() => {
-
-        repo.getQueryResult(googleId).then(result => setDogs(result))
-    },[])
+const DogManagement = () => {
 
 
     return <div className={"dog-management"}>
-        <AddItem className={"dog-management__card"} onClick={() => navigate("/insertDog")}/>
-        {
-            dogs.map(({name,mediaUrl}) => <DogCard className={"dog-management__card"} googleId={googleId} key={name} name={name} mediaUrl={mediaUrl}/>)
-        }
+        <DogCard className={"dog-management__card"} key={"Kai"} name={"Kai"} mediaUrl={Kai}/>
+        <DogCard className={"dog-management__card"} key={"Kash"} name={"Kash"} mediaUrl={Kash}/>
     </div>
 }
 

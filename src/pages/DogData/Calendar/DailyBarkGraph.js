@@ -1,9 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
 import {connect} from "react-redux"
-import BottomDrawer from "./BottomDrawer";
 import useScreenSize from 'use-screen-size'
+import DayAnalysis from "./DayAnalysis";
 
+
+export const colorOf = {
+    "Happy": "#32c809",
+    "Upset": "#0910B3",
+    "Fearful": "black",
+}
 
 const convertToTimeSeries = (date, intervals) => {
 
@@ -36,17 +42,16 @@ const convertToTimeSeries = (date, intervals) => {
 
 
 
-const DailyBarkGraph = ({auth, date, data = null}) => {
+const DailyBarkGraph = ({ date, data = null}) => {
 
     const ref = useRef()
-    const [drawerOpen, setDrawerOpen] = useState(false)
-    const [item, setItem] = useState(null)
     const size = useScreenSize()
 
     useEffect(() => {
         if (data === null) {
             return
         }
+
         const parseTime = d3.timeParse("%H:%M")
         const {current} = ref
         current.querySelectorAll("*").forEach(child => child.remove())
@@ -109,8 +114,16 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
                 return parseInt(current / endDay * (height - margin.top)) + margin.top
             })
             .attr('width', () => width)
-            .attr('height', (d) => d[1])
-            .attr("fill", "red")
+            .attr('height', (d) => 16)
+            .attr("fill", (d, i) => {
+                const mood = data[i][1]
+                if(!colorOf[mood]){
+                    return "white"
+                }
+                else{
+                    return colorOf[mood]
+                }
+            })
 
         svg.selectAll("text")
             .data(data)
@@ -134,65 +147,6 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
                 svg.attr("width", width);
                 svg.attr("height", height);
             });
-
-
-        rects.on("mouseover", function (d) {
-            d3.select(this)
-                .attr("fill", "rgb(0," + d + ",0)")
-                .style("cursor", "pointer")
-        })
-
-        const clicked = (_, i) => {
-            let controlDate = new Date(i[0])
-
-            data.forEach(([date, end, prefix]) => {
-                date = new Date(date)
-                date.setMinutes(date.getMinutes())
-                if (date.getHours() === controlDate.getHours() && date.getMinutes() === controlDate.getMinutes()) {
-                    setDrawerOpen(true)
-                    setItem({
-                        date,
-                        prefix,
-                        duration: (end.getTime()-date.getTime()) / 100 / 10 / 60,
-                        url:"https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prefix
-                    })
-                }
-            })
-            d3.select(this)
-                .attr("fill", "yellow")
-        }
-
-        const touched = (a,b,c) => {
-            let controlDate = new Date(b[0])
-
-            data.forEach(([date, end, prefix]) => {
-                date = new Date(date)
-                if (date.getHours() === controlDate.getHours() && date.getMinutes() === controlDate.getMinutes()) {
-                    setDrawerOpen(true)
-                    setItem({
-                        date,
-                        prefix,
-                        duration: (end.getTime()-date.getTime()) / 100 / 10 / 60,
-                        url:"https://sarama-audio-files.s3.us-west-1.amazonaws.com/" + prefix
-                    })
-                }
-            })
-            d3.select(this)
-                .attr("fill", "yellow")
-        }
-        if(window.ontouchstart === undefined){
-            rects.on("click", clicked)
-            rects.on("mouseout", function (d) {
-                d3.select(this)
-                    .attr("fill", "red")
-                    .style("cursor", "default")
-            })
-        }
-
-        else{
-            rects.on("click", touched)
-
-        }
 
 
 
@@ -222,8 +176,7 @@ const DailyBarkGraph = ({auth, date, data = null}) => {
             marginBottom: "2rem"
         }}>Bark calendar</h2>
         <div ref={ref} id={"daily-bark"}/>
-        <BottomDrawer setDrawer={setDrawerOpen} item={item} open={drawerOpen}/>
-
+        <DayAnalysis data={data}/>
     </div>
 }
 

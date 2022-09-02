@@ -43,7 +43,7 @@ const NavHeader = ({dispatchLogout}) => {
 
     return <header className={"nav-header"}>
         <div>
-            <Link to={"/dogs"}>Sarama</Link>
+            <Link to={"/"}>Sarama</Link>
         </div>
         <div>
             <Bread/>
