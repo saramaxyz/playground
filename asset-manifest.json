@@ -1,33 +1,17 @@
 {
   "files": {
-    "main.css": "./static/css/main.9c236b77.css",
-    "main.js": "./static/js/main.64a8f8d6.js",
+    "main.css": "./static/css/main.7c3338a6.css",
+    "main.js": "./static/js/main.6cc1e58d.js",
     "static/js/787.c6006e9a.chunk.js": "./static/js/787.c6006e9a.chunk.js",
-    "static/media/cgc_image.jpg": "./static/media/cgc_image.1669f92426db1726a37c.jpg",
-    "static/media/reaction_to_dogs.jpg": "./static/media/reaction_to_dogs.f7206f040a5905ef4c4d.jpg",
-    "static/media/supervised_seperation.JPG": "./static/media/supervised_seperation.3792a2d61508477b5050.JPG",
-    "static/media/recall.png": "./static/media/recall.4187e4948ec6bf2e4184.png",
-    "static/media/reaction_to_distraction.jpg": "./static/media/reaction_to_distraction.795835b2672efc27ded3.jpg",
-    "static/media/accepting_a_stranger.jpg": "./static/media/accepting_a_stranger.e4e12734531618ce1a0c.jpg",
-    "static/media/cgc_image.png": "./static/media/cgc_image.a5de80609acf59049f8e.png",
-    "static/media/out_for_walk.jpg": "./static/media/out_for_walk.194c418b6224eb88458d.jpg",
-    "static/media/sit_and_down.jpeg": "./static/media/sit_and_down.8f28a7ee1de7a5793d24.jpeg",
-    "static/media/avatar.webp": "./static/media/avatar.81fb91ea124734f16f1b.webp",
-    "static/media/sitting_politely.jpg": "./static/media/sitting_politely.bd408aa55cacad4a9f29.jpg",
-    "static/media/down.png": "./static/media/down.a33362c58c8b7fe56b42.png",
-    "static/media/touch.png": "./static/media/touch.1f13dfc5ffaba10cdc69.png",
-    "static/media/icon.png": "./static/media/icon.d0253b48a7527f2abd10.png",
-    "static/media/sit.png": "./static/media/sit.11bfff4c0f884a74fd27.png",
-    "static/media/wait.svg": "./static/media/wait.2f2508f2e1815a2e86c002d642e3178a.svg",
-    "static/media/stand.svg": "./static/media/stand.d43dc4f8f8f57c8ad82c30ea322ca03f.svg",
-    "static/media/recall.svg": "./static/media/recall.df00374a4f15cfba268d1f7789480c7c.svg",
+    "static/media/Kai.jpg": "./static/media/Kai.1800db8ba5ffc8a295f9.jpg",
+    "static/media/Kash.png": "./static/media/Kash.38b7bf98ccf1f50107a1.png",
     "index.html": "./index.html",
-    "main.9c236b77.css.map": "./static/css/main.9c236b77.css.map",
-    "main.64a8f8d6.js.map": "./static/js/main.64a8f8d6.js.map",
+    "main.7c3338a6.css.map": "./static/css/main.7c3338a6.css.map",
+    "main.6cc1e58d.js.map": "./static/js/main.6cc1e58d.js.map",
     "787.c6006e9a.chunk.js.map": "./static/js/787.c6006e9a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c236b77.css",
-    "static/js/main.64a8f8d6.js"
+    "static/css/main.7c3338a6.css",
+    "static/js/main.6cc1e58d.js"
   ]
 }
